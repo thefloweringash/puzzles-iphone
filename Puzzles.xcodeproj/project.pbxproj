@@ -1,0 +1,469 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* PuzzlesAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* PuzzlesAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		48536EE110DC910600D61497 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 48536EE010DC910600D61497 /* Icon.png */; };
+		48B670BC10D76F9100B244DF /* blackbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670BA10D76F9100B244DF /* blackbox.c */; };
+		48B670BD10D76F9100B244DF /* bridges.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670BB10D76F9100B244DF /* bridges.c */; };
+		48B670D710D76FCF00B244DF /* cube.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670BE10D76FCF00B244DF /* cube.c */; };
+		48B670D810D76FCF00B244DF /* dominosa.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670BF10D76FCF00B244DF /* dominosa.c */; };
+		48B670D910D76FCF00B244DF /* fifteen.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670C010D76FCF00B244DF /* fifteen.c */; };
+		48B670DA10D76FCF00B244DF /* filling.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670C110D76FCF00B244DF /* filling.c */; };
+		48B670DB10D76FCF00B244DF /* flip.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670C210D76FCF00B244DF /* flip.c */; };
+		48B670DC10D76FCF00B244DF /* galaxies.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670C310D76FCF00B244DF /* galaxies.c */; };
+		48B670DD10D76FCF00B244DF /* guess.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670C410D76FCF00B244DF /* guess.c */; };
+		48B670DE10D76FCF00B244DF /* inertia.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670C510D76FCF00B244DF /* inertia.c */; };
+		48B670DF10D76FCF00B244DF /* lightup.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670C610D76FCF00B244DF /* lightup.c */; };
+		48B670E010D76FCF00B244DF /* loopy.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670C710D76FCF00B244DF /* loopy.c */; };
+		48B670E110D76FCF00B244DF /* map.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670C810D76FCF00B244DF /* map.c */; };
+		48B670E210D76FCF00B244DF /* mines.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670C910D76FCF00B244DF /* mines.c */; };
+		48B670E310D76FCF00B244DF /* net.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670CA10D76FCF00B244DF /* net.c */; };
+		48B670E410D76FCF00B244DF /* netslide.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670CB10D76FCF00B244DF /* netslide.c */; };
+		48B670E510D76FCF00B244DF /* nullgame.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670CC10D76FCF00B244DF /* nullgame.c */; };
+		48B670E610D76FCF00B244DF /* pattern.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670CD10D76FCF00B244DF /* pattern.c */; };
+		48B670E710D76FCF00B244DF /* pegs.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670CE10D76FCF00B244DF /* pegs.c */; };
+		48B670E810D76FCF00B244DF /* samegame.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670CF10D76FCF00B244DF /* samegame.c */; };
+		48B670E910D76FCF00B244DF /* sixteen.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670D010D76FCF00B244DF /* sixteen.c */; };
+		48B670EA10D76FCF00B244DF /* slant.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670D110D76FCF00B244DF /* slant.c */; };
+		48B670EB10D76FCF00B244DF /* solo.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670D210D76FCF00B244DF /* solo.c */; };
+		48B670EC10D76FCF00B244DF /* tents.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670D310D76FCF00B244DF /* tents.c */; };
+		48B670ED10D76FCF00B244DF /* twiddle.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670D410D76FCF00B244DF /* twiddle.c */; };
+		48B670EE10D76FCF00B244DF /* unequal.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670D510D76FCF00B244DF /* unequal.c */; };
+		48B670EF10D76FCF00B244DF /* untangle.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670D610D76FCF00B244DF /* untangle.c */; };
+		48B6711D10D770D600B244DF /* combi.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6710F10D770D600B244DF /* combi.c */; };
+		48B6711E10D770D600B244DF /* divvy.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6711010D770D600B244DF /* divvy.c */; };
+		48B6711F10D770D600B244DF /* drawing.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6711110D770D600B244DF /* drawing.c */; };
+		48B6712010D770D600B244DF /* dsf.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6711210D770D600B244DF /* dsf.c */; };
+		48B6712110D770D600B244DF /* laydomino.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6711310D770D600B244DF /* laydomino.c */; };
+		48B6712210D770D600B244DF /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6711410D770D600B244DF /* list.c */; };
+		48B6712310D770D600B244DF /* malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6711510D770D600B244DF /* malloc.c */; };
+		48B6712410D770D600B244DF /* maxflow.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6711610D770D600B244DF /* maxflow.c */; };
+		48B6712510D770D600B244DF /* midend.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6711710D770D600B244DF /* midend.c */; };
+		48B6712610D770D600B244DF /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6711810D770D600B244DF /* misc.c */; };
+		48B6712910D770D600B244DF /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6711B10D770D600B244DF /* random.c */; };
+		48B6712A10D770D600B244DF /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6711C10D770D600B244DF /* version.c */; };
+		48B6713410D771B700B244DF /* grid.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6713310D771B700B244DF /* grid.c */; };
+		48B6713C10D7725300B244DF /* tree234.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6713B10D7725300B244DF /* tree234.c */; };
+		48B6714B10D7726400B244DF /* latin.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6714A10D7726400B244DF /* latin.c */; };
+		48B6714F10D7728700B244DF /* rect.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B6714E10D7728700B244DF /* rect.c */; };
+		48B6715610D7731500B244DF /* PuzzlesFrontEnd.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B6715510D7731500B244DF /* PuzzlesFrontEnd.m */; };
+		48B6716910D776D300B244DF /* PuzzlesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B6716710D776D300B244DF /* PuzzlesListViewController.m */; };
+		48B6716A10D776D300B244DF /* PuzzlesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48B6716810D776D300B244DF /* PuzzlesListViewController.xib */; };
+		48B6725110D7893900B244DF /* PuzzlesDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B6725010D7893900B244DF /* PuzzlesDrawingView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* PuzzlesAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* PuzzlesAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzlesAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* Puzzles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Puzzles.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* Puzzles_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Puzzles_Prefix.pch; sourceTree = "<group>"; };
+		48536EE010DC910600D61497 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		48B670BA10D76F9100B244DF /* blackbox.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blackbox.c; sourceTree = "<group>"; };
+		48B670BB10D76F9100B244DF /* bridges.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bridges.c; sourceTree = "<group>"; };
+		48B670BE10D76FCF00B244DF /* cube.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cube.c; sourceTree = "<group>"; };
+		48B670BF10D76FCF00B244DF /* dominosa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dominosa.c; sourceTree = "<group>"; };
+		48B670C010D76FCF00B244DF /* fifteen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fifteen.c; sourceTree = "<group>"; };
+		48B670C110D76FCF00B244DF /* filling.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = filling.c; sourceTree = "<group>"; };
+		48B670C210D76FCF00B244DF /* flip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = flip.c; sourceTree = "<group>"; };
+		48B670C310D76FCF00B244DF /* galaxies.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = galaxies.c; sourceTree = "<group>"; };
+		48B670C410D76FCF00B244DF /* guess.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = guess.c; sourceTree = "<group>"; };
+		48B670C510D76FCF00B244DF /* inertia.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = inertia.c; sourceTree = "<group>"; };
+		48B670C610D76FCF00B244DF /* lightup.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lightup.c; sourceTree = "<group>"; };
+		48B670C710D76FCF00B244DF /* loopy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loopy.c; sourceTree = "<group>"; };
+		48B670C810D76FCF00B244DF /* map.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = map.c; sourceTree = "<group>"; };
+		48B670C910D76FCF00B244DF /* mines.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mines.c; sourceTree = "<group>"; };
+		48B670CA10D76FCF00B244DF /* net.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = net.c; sourceTree = "<group>"; };
+		48B670CB10D76FCF00B244DF /* netslide.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = netslide.c; sourceTree = "<group>"; };
+		48B670CC10D76FCF00B244DF /* nullgame.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nullgame.c; sourceTree = "<group>"; };
+		48B670CD10D76FCF00B244DF /* pattern.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pattern.c; sourceTree = "<group>"; };
+		48B670CE10D76FCF00B244DF /* pegs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pegs.c; sourceTree = "<group>"; };
+		48B670CF10D76FCF00B244DF /* samegame.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = samegame.c; sourceTree = "<group>"; };
+		48B670D010D76FCF00B244DF /* sixteen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sixteen.c; sourceTree = "<group>"; };
+		48B670D110D76FCF00B244DF /* slant.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = slant.c; sourceTree = "<group>"; };
+		48B670D210D76FCF00B244DF /* solo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = solo.c; sourceTree = "<group>"; };
+		48B670D310D76FCF00B244DF /* tents.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tents.c; sourceTree = "<group>"; };
+		48B670D410D76FCF00B244DF /* twiddle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = twiddle.c; sourceTree = "<group>"; };
+		48B670D510D76FCF00B244DF /* unequal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unequal.c; sourceTree = "<group>"; };
+		48B670D610D76FCF00B244DF /* untangle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = untangle.c; sourceTree = "<group>"; };
+		48B6710510D7706700B244DF /* puzzles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = puzzles.h; sourceTree = "<group>"; };
+		48B6710A10D7709600B244DF /* grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = grid.h; sourceTree = "<group>"; };
+		48B6710B10D7709600B244DF /* latin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = latin.h; sourceTree = "<group>"; };
+		48B6710C10D7709600B244DF /* maxflow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maxflow.h; sourceTree = "<group>"; };
+		48B6710D10D7709600B244DF /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
+		48B6710E10D7709600B244DF /* tree234.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tree234.h; sourceTree = "<group>"; };
+		48B6710F10D770D600B244DF /* combi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = combi.c; sourceTree = "<group>"; };
+		48B6711010D770D600B244DF /* divvy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = divvy.c; sourceTree = "<group>"; };
+		48B6711110D770D600B244DF /* drawing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = drawing.c; sourceTree = "<group>"; };
+		48B6711210D770D600B244DF /* dsf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dsf.c; sourceTree = "<group>"; };
+		48B6711310D770D600B244DF /* laydomino.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = laydomino.c; sourceTree = "<group>"; };
+		48B6711410D770D600B244DF /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = list.c; sourceTree = "<group>"; };
+		48B6711510D770D600B244DF /* malloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = malloc.c; sourceTree = "<group>"; };
+		48B6711610D770D600B244DF /* maxflow.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = maxflow.c; sourceTree = "<group>"; };
+		48B6711710D770D600B244DF /* midend.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = midend.c; sourceTree = "<group>"; };
+		48B6711810D770D600B244DF /* misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = misc.c; sourceTree = "<group>"; };
+		48B6711B10D770D600B244DF /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = random.c; sourceTree = "<group>"; };
+		48B6711C10D770D600B244DF /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = version.c; sourceTree = "<group>"; };
+		48B6713310D771B700B244DF /* grid.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = grid.c; sourceTree = "<group>"; };
+		48B6713B10D7725300B244DF /* tree234.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tree234.c; sourceTree = "<group>"; };
+		48B6714A10D7726400B244DF /* latin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = latin.c; sourceTree = "<group>"; };
+		48B6714E10D7728700B244DF /* rect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rect.c; sourceTree = "<group>"; };
+		48B6715410D7731500B244DF /* PuzzlesFrontEnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesFrontEnd.h; sourceTree = "<group>"; };
+		48B6715510D7731500B244DF /* PuzzlesFrontEnd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzlesFrontEnd.m; sourceTree = "<group>"; };
+		48B6716610D776D300B244DF /* PuzzlesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesListViewController.h; sourceTree = "<group>"; };
+		48B6716710D776D300B244DF /* PuzzlesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzlesListViewController.m; sourceTree = "<group>"; };
+		48B6716810D776D300B244DF /* PuzzlesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PuzzlesListViewController.xib; sourceTree = "<group>"; };
+		48B6724F10D7893900B244DF /* PuzzlesDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesDrawingView.h; sourceTree = "<group>"; };
+		48B6725010D7893900B244DF /* PuzzlesDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzlesDrawingView.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Puzzles-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Puzzles-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* PuzzlesAppDelegate.h */,
+				1D3623250D0F684500981E51 /* PuzzlesAppDelegate.m */,
+				48B6715410D7731500B244DF /* PuzzlesFrontEnd.h */,
+				48B6715510D7731500B244DF /* PuzzlesFrontEnd.m */,
+				48B6716610D776D300B244DF /* PuzzlesListViewController.h */,
+				48B6716710D776D300B244DF /* PuzzlesListViewController.m */,
+				48B6724F10D7893900B244DF /* PuzzlesDrawingView.h */,
+				48B6725010D7893900B244DF /* PuzzlesDrawingView.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* Puzzles.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				48B670B710D76F3900B244DF /* Puzzles */,
+				48B6710410D7704E00B244DF /* Puzzles Support */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* Puzzles_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				48536EE010DC910600D61497 /* Icon.png */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				48B6716810D776D300B244DF /* PuzzlesListViewController.xib */,
+				8D1107310486CEB800E47090 /* Puzzles-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		48B670B710D76F3900B244DF /* Puzzles */ = {
+			isa = PBXGroup;
+			children = (
+				48B670BA10D76F9100B244DF /* blackbox.c */,
+				48B670BB10D76F9100B244DF /* bridges.c */,
+				48B670BE10D76FCF00B244DF /* cube.c */,
+				48B670BF10D76FCF00B244DF /* dominosa.c */,
+				48B670C010D76FCF00B244DF /* fifteen.c */,
+				48B670C110D76FCF00B244DF /* filling.c */,
+				48B670C210D76FCF00B244DF /* flip.c */,
+				48B670C310D76FCF00B244DF /* galaxies.c */,
+				48B670C410D76FCF00B244DF /* guess.c */,
+				48B670C510D76FCF00B244DF /* inertia.c */,
+				48B670C610D76FCF00B244DF /* lightup.c */,
+				48B670C710D76FCF00B244DF /* loopy.c */,
+				48B670C810D76FCF00B244DF /* map.c */,
+				48B670C910D76FCF00B244DF /* mines.c */,
+				48B670CA10D76FCF00B244DF /* net.c */,
+				48B670CB10D76FCF00B244DF /* netslide.c */,
+				48B670CC10D76FCF00B244DF /* nullgame.c */,
+				48B670CD10D76FCF00B244DF /* pattern.c */,
+				48B670CE10D76FCF00B244DF /* pegs.c */,
+				48B6714E10D7728700B244DF /* rect.c */,
+				48B670CF10D76FCF00B244DF /* samegame.c */,
+				48B670D010D76FCF00B244DF /* sixteen.c */,
+				48B670D110D76FCF00B244DF /* slant.c */,
+				48B670D210D76FCF00B244DF /* solo.c */,
+				48B670D310D76FCF00B244DF /* tents.c */,
+				48B670D410D76FCF00B244DF /* twiddle.c */,
+				48B670D510D76FCF00B244DF /* unequal.c */,
+				48B670D610D76FCF00B244DF /* untangle.c */,
+			);
+			name = Puzzles;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		48B6710410D7704E00B244DF /* Puzzles Support */ = {
+			isa = PBXGroup;
+			children = (
+				48B6710510D7706700B244DF /* puzzles.h */,
+				48B6710A10D7709600B244DF /* grid.h */,
+				48B6713310D771B700B244DF /* grid.c */,
+				48B6710B10D7709600B244DF /* latin.h */,
+				48B6714A10D7726400B244DF /* latin.c */,
+				48B6710C10D7709600B244DF /* maxflow.h */,
+				48B6710D10D7709600B244DF /* resource.h */,
+				48B6710E10D7709600B244DF /* tree234.h */,
+				48B6713B10D7725300B244DF /* tree234.c */,
+				48B6710F10D770D600B244DF /* combi.c */,
+				48B6711010D770D600B244DF /* divvy.c */,
+				48B6711110D770D600B244DF /* drawing.c */,
+				48B6711210D770D600B244DF /* dsf.c */,
+				48B6711310D770D600B244DF /* laydomino.c */,
+				48B6711410D770D600B244DF /* list.c */,
+				48B6711510D770D600B244DF /* malloc.c */,
+				48B6711610D770D600B244DF /* maxflow.c */,
+				48B6711710D770D600B244DF /* midend.c */,
+				48B6711810D770D600B244DF /* misc.c */,
+				48B6711B10D770D600B244DF /* random.c */,
+				48B6711C10D770D600B244DF /* version.c */,
+			);
+			name = "Puzzles Support";
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* Puzzles */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Puzzles" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Puzzles;
+			productName = Puzzles;
+			productReference = 1D6058910D05DD3D006BFB54 /* Puzzles.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Puzzles" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* Puzzles */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				48B6716A10D776D300B244DF /* PuzzlesListViewController.xib in Resources */,
+				48536EE110DC910600D61497 /* Icon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* PuzzlesAppDelegate.m in Sources */,
+				48B670BC10D76F9100B244DF /* blackbox.c in Sources */,
+				48B670BD10D76F9100B244DF /* bridges.c in Sources */,
+				48B670D710D76FCF00B244DF /* cube.c in Sources */,
+				48B670D810D76FCF00B244DF /* dominosa.c in Sources */,
+				48B670D910D76FCF00B244DF /* fifteen.c in Sources */,
+				48B670DA10D76FCF00B244DF /* filling.c in Sources */,
+				48B670DB10D76FCF00B244DF /* flip.c in Sources */,
+				48B670DC10D76FCF00B244DF /* galaxies.c in Sources */,
+				48B670DD10D76FCF00B244DF /* guess.c in Sources */,
+				48B670DE10D76FCF00B244DF /* inertia.c in Sources */,
+				48B670DF10D76FCF00B244DF /* lightup.c in Sources */,
+				48B670E010D76FCF00B244DF /* loopy.c in Sources */,
+				48B670E110D76FCF00B244DF /* map.c in Sources */,
+				48B670E210D76FCF00B244DF /* mines.c in Sources */,
+				48B670E310D76FCF00B244DF /* net.c in Sources */,
+				48B670E410D76FCF00B244DF /* netslide.c in Sources */,
+				48B670E510D76FCF00B244DF /* nullgame.c in Sources */,
+				48B670E610D76FCF00B244DF /* pattern.c in Sources */,
+				48B670E710D76FCF00B244DF /* pegs.c in Sources */,
+				48B670E810D76FCF00B244DF /* samegame.c in Sources */,
+				48B670E910D76FCF00B244DF /* sixteen.c in Sources */,
+				48B670EA10D76FCF00B244DF /* slant.c in Sources */,
+				48B670EB10D76FCF00B244DF /* solo.c in Sources */,
+				48B670EC10D76FCF00B244DF /* tents.c in Sources */,
+				48B670ED10D76FCF00B244DF /* twiddle.c in Sources */,
+				48B670EE10D76FCF00B244DF /* unequal.c in Sources */,
+				48B670EF10D76FCF00B244DF /* untangle.c in Sources */,
+				48B6711D10D770D600B244DF /* combi.c in Sources */,
+				48B6711E10D770D600B244DF /* divvy.c in Sources */,
+				48B6711F10D770D600B244DF /* drawing.c in Sources */,
+				48B6712010D770D600B244DF /* dsf.c in Sources */,
+				48B6712110D770D600B244DF /* laydomino.c in Sources */,
+				48B6712210D770D600B244DF /* list.c in Sources */,
+				48B6712310D770D600B244DF /* malloc.c in Sources */,
+				48B6712410D770D600B244DF /* maxflow.c in Sources */,
+				48B6712510D770D600B244DF /* midend.c in Sources */,
+				48B6712610D770D600B244DF /* misc.c in Sources */,
+				48B6712910D770D600B244DF /* random.c in Sources */,
+				48B6712A10D770D600B244DF /* version.c in Sources */,
+				48B6713410D771B700B244DF /* grid.c in Sources */,
+				48B6713C10D7725300B244DF /* tree234.c in Sources */,
+				48B6714B10D7726400B244DF /* latin.c in Sources */,
+				48B6714F10D7728700B244DF /* rect.c in Sources */,
+				48B6715610D7731500B244DF /* PuzzlesFrontEnd.m in Sources */,
+				48B6716910D776D300B244DF /* PuzzlesListViewController.m in Sources */,
+				48B6725110D7893900B244DF /* PuzzlesDrawingView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Puzzles_Prefix.pch;
+				INFOPLIST_FILE = "Puzzles-Info.plist";
+				PRODUCT_NAME = Puzzles;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Puzzles_Prefix.pch;
+				INFOPLIST_FILE = "Puzzles-Info.plist";
+				PRODUCT_NAME = Puzzles;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = COMBINED;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = COMBINED;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Puzzles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Puzzles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
