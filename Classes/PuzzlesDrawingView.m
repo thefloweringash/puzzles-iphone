@@ -148,7 +148,9 @@ static void iphone_dr_draw_circle(void *handle, int cx, int cy, int radius,
 static void iphone_dr_draw_update(void *handle, int x, int y, int w, int h)
 {
     PuzzlesDrawingView *view = drawingView_from_handle(handle);
-    [view setNeedsDisplayInRect:CGRectMake(x, y, w, h)];
+    CGPoint offset = [view locationInViewToGamePoint:CGPointZero];
+    [view setNeedsDisplayInRect:CGRectOffset(CGRectMake(x, y, w, h),
+                                             -offset.x, -offset.y)];
 }
 
 static void iphone_dr_clip(void *handle, int x, int y, int w, int h)
@@ -257,18 +259,16 @@ static void iphone_dr_line_dotted(void *handle, int dotted)
 #pragma mark -
 @implementation PuzzlesDrawingView
 
-@synthesize colours;
 @synthesize backingContext;
 @synthesize clipped;
+@synthesize midend = myMidend;
 
 - (void)setMidend:(midend *)aMidend {
     myMidend = aMidend;
 }
 
-- (id)initWithFrame:(CGRect)frame midend:(midend*)aMidend{
-    if (self = [super initWithFrame:frame]) {
-        myMidend = aMidend;
-
+- (NSArray*)colours {
+    if (!colours) {
         NSMutableArray *mutableColors = [NSMutableArray array];
         int ncolours;
         float *values = midend_colours(myMidend, &ncolours);
@@ -278,24 +278,54 @@ static void iphone_dr_line_dotted(void *handle, int dotted)
             [mutableColors addObject:[UIColor colorWithRed:current[0] green:current[1] blue:current[2] alpha:1.0f]];
             current += 3;
         }
-        self.colours = mutableColors;
+        colours = [mutableColors retain];
         sfree(values);
-
-        backingContext = create_bitmap_context(self.frame.size.width, self.frame.size.height);
     }
-    return self;
+    return colours;
 }
 
-
 - (void)drawRect:(CGRect)rect {
+    CGContextRef c = UIGraphicsGetCurrentContext();
+
+    CGContextSetFillColorWithColor(c, [[colours objectAtIndex:0] CGColor]);
+    CGContextFillRect(c, rect);
+
     CGImageRef image = CGBitmapContextCreateImage(backingContext);
-    CGContextDrawImage(UIGraphicsGetCurrentContext(), self.bounds, image);
+    CGContextDrawImage(c, puzzleSubframe, image);
     CGImageRelease(image);
 }
 
+- (CGPoint)locationInViewToGamePoint:(CGPoint)p {
+    return CGPointMake(p.x - puzzleSubframe.origin.x,
+                       p.y - puzzleSubframe.origin.y);
+}
+
+- (void)layoutSubviews {
+    if (backingContext) {
+        destroy_bitmap_context(backingContext);
+        backingContext = NULL;
+    }
+    if (myMidend) {
+        puzzleSubframe.size = self.bounds.size;
+        {
+            int maxX = puzzleSubframe.size.width;
+            int maxY = puzzleSubframe.size.height;
+            midend_size(myMidend, &maxX, &maxY, true);
+            NSLog(@"midend requested size: %ix%i", maxX, maxY);
+            puzzleSubframe.size = CGSizeMake(maxX, maxY);
+        }
+        puzzleSubframe.origin.x = (self.bounds.size.width - puzzleSubframe.size.width) / 2;
+        puzzleSubframe.origin.y = (self.bounds.size.height - puzzleSubframe.size.height) / 2;
+
+        backingContext = create_bitmap_context(puzzleSubframe.size.width, puzzleSubframe.size.height);
+        [self setNeedsDisplay];
+        midend_redraw(myMidend);
+    }
+}
 
 - (void)dealloc {
-    self.colours = nil;
+    [colours release];
+    colours = nil;
     if (backingContext) {
         destroy_bitmap_context(backingContext);
         backingContext = NULL;

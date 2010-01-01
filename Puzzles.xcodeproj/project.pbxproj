@@ -14,6 +14,11 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		48536EE110DC910600D61497 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 48536EE010DC910600D61497 /* Icon.png */; };
+		4888AD9E10ED9E120059E5C4 /* PuzzlesFrontEnd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4888AD9D10ED9E120059E5C4 /* PuzzlesFrontEnd.xib */; };
+		4888AE0910EDA6F60059E5C4 /* PuzzlesConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4888AE0710EDA6F60059E5C4 /* PuzzlesConfigurationViewController.m */; };
+		4888AE0A10EDA6F60059E5C4 /* PuzzlesConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4888AE0810EDA6F60059E5C4 /* PuzzlesConfigurationViewController.xib */; };
+		4888B1BD10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4888B1BB10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.m */; };
+		4888B1BE10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4888B1BC10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.xib */; };
 		48B670BC10D76F9100B244DF /* blackbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670BA10D76F9100B244DF /* blackbox.c */; };
 		48B670BD10D76F9100B244DF /* bridges.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670BB10D76F9100B244DF /* bridges.c */; };
 		48B670D710D76FCF00B244DF /* cube.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670BE10D76FCF00B244DF /* cube.c */; };
@@ -74,6 +79,13 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Puzzles_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Puzzles_Prefix.pch; sourceTree = "<group>"; };
 		48536EE010DC910600D61497 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		4888AD9D10ED9E120059E5C4 /* PuzzlesFrontEnd.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PuzzlesFrontEnd.xib; sourceTree = "<group>"; };
+		4888AE0610EDA6F60059E5C4 /* PuzzlesConfigurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesConfigurationViewController.h; sourceTree = "<group>"; };
+		4888AE0710EDA6F60059E5C4 /* PuzzlesConfigurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzlesConfigurationViewController.m; sourceTree = "<group>"; };
+		4888AE0810EDA6F60059E5C4 /* PuzzlesConfigurationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PuzzlesConfigurationViewController.xib; sourceTree = "<group>"; };
+		4888B1BA10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesConfigurationChoicesViewController.h; sourceTree = "<group>"; };
+		4888B1BB10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzlesConfigurationChoicesViewController.m; sourceTree = "<group>"; };
+		4888B1BC10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PuzzlesConfigurationChoicesViewController.xib; sourceTree = "<group>"; };
 		48B670BA10D76F9100B244DF /* blackbox.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blackbox.c; sourceTree = "<group>"; };
 		48B670BB10D76F9100B244DF /* bridges.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bridges.c; sourceTree = "<group>"; };
 		48B670BE10D76FCF00B244DF /* cube.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cube.c; sourceTree = "<group>"; };
@@ -158,6 +170,10 @@
 				48B6716710D776D300B244DF /* PuzzlesListViewController.m */,
 				48B6724F10D7893900B244DF /* PuzzlesDrawingView.h */,
 				48B6725010D7893900B244DF /* PuzzlesDrawingView.m */,
+				4888AE0610EDA6F60059E5C4 /* PuzzlesConfigurationViewController.h */,
+				4888AE0710EDA6F60059E5C4 /* PuzzlesConfigurationViewController.m */,
+				4888B1BA10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.h */,
+				4888B1BB10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -198,7 +214,10 @@
 			children = (
 				48536EE010DC910600D61497 /* Icon.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				4888AD9D10ED9E120059E5C4 /* PuzzlesFrontEnd.xib */,
 				48B6716810D776D300B244DF /* PuzzlesListViewController.xib */,
+				4888AE0810EDA6F60059E5C4 /* PuzzlesConfigurationViewController.xib */,
+				4888B1BC10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.xib */,
 				8D1107310486CEB800E47090 /* Puzzles-Info.plist */,
 			);
 			name = Resources;
@@ -324,6 +343,9 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				48B6716A10D776D300B244DF /* PuzzlesListViewController.xib in Resources */,
 				48536EE110DC910600D61497 /* Icon.png in Resources */,
+				4888AD9E10ED9E120059E5C4 /* PuzzlesFrontEnd.xib in Resources */,
+				4888AE0A10EDA6F60059E5C4 /* PuzzlesConfigurationViewController.xib in Resources */,
+				4888B1BE10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +404,8 @@
 				48B6715610D7731500B244DF /* PuzzlesFrontEnd.m in Sources */,
 				48B6716910D776D300B244DF /* PuzzlesListViewController.m in Sources */,
 				48B6725110D7893900B244DF /* PuzzlesDrawingView.m in Sources */,
+				4888AE0910EDA6F60059E5C4 /* PuzzlesConfigurationViewController.m in Sources */,
+				4888B1BD10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

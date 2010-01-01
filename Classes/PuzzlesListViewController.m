@@ -37,6 +37,10 @@
     [frontEnd release];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
 - (void)dealloc {
     [super dealloc];
 }

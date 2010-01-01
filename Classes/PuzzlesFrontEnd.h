@@ -22,10 +22,13 @@ struct frontend {
     PuzzlesDrawingView* drawingView;
     UILabel *statusLabel;
     NSArray *configurationActions;
+
+    PuzzlesDrawingView *puzzleView;
+    BOOL gameParamsChanged;
 }
 
-@property (nonatomic, retain) PuzzlesDrawingView *drawingView;
-@property (nonatomic, retain) UILabel *statusLabel;
+@property (nonatomic, retain) IBOutlet PuzzlesDrawingView *puzzleView;
+@property (nonatomic, retain) IBOutlet UILabel *statusLabel;
 
 - (id)initWithGame:(const game*)aGame;
 
@@ -40,5 +43,12 @@ struct frontend {
 
 - (NSArray*)configurationActions;
 - (void)showConfigureMenu;
+
+- (IBAction)undo:(id)sender;
+- (IBAction)redo:(id)sender;
+- (IBAction)restart:(id)sender;
+- (IBAction)new:(id)sender;
+
+- (void)gameParamsChanged;
 
 @end

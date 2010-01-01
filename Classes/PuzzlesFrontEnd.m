@@ -2,6 +2,7 @@
 
 #import "PuzzlesFrontEnd.h"
 #import "PuzzlesDrawingView.h"
+#import "PuzzlesConfigurationViewController.h"
 
 #include "puzzles.h"
 
@@ -10,11 +11,11 @@
 
 @implementation PuzzlesFrontEnd
 
-@synthesize drawingView;
 @synthesize statusLabel;
+@synthesize puzzleView;
 
 - (id)initWithGame:(const game*)aGame {
-    if (self = [super init]) {
+    if (self = [super initWithNibName:@"PuzzlesFrontEnd" bundle:nil]) {
         frontend_wrapper.object = self;
 
         myGame = aGame;
@@ -25,93 +26,54 @@
 
         self.navigationItem.rightBarButtonItem =
         	[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                                            target:self
-                                                            action:@selector(showConfigureMenu)]
+                                                           target:self
+                                                           action:@selector(showConfigureMenu)]
              autorelease];
 
         myMidend = midend_new(&frontend_wrapper, myGame,
                               [PuzzlesDrawingView drawingAPI],
                               &frontend_wrapper);
         midend_new_game(myMidend);
-
-        if (midend_wants_statusbar(myMidend)) {
-            CGRect labelFrame = self.view.bounds;
-            labelFrame.size.height = 32; // TODO: fixed size here
-
-            UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
-            label.textAlignment = UITextAlignmentCenter;
-            label.backgroundColor = [UIColor blackColor];
-            label.textColor = [UIColor whiteColor];
-            label.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |
-	            UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-            self.statusLabel = label;
-            [label release];
-            [self.view addSubview:self.statusLabel];
-        }
-
-        CGRect viewFrame = self.view.bounds;
-        if (self.statusLabel) {
-            CGFloat labelHeight = self.statusLabel.frame.size.height;
-            viewFrame.origin.y += labelHeight;
-            viewFrame.size.height -= labelHeight;
-        }
-
-        int maxX = viewFrame.size.width, maxY = viewFrame.size.height;
-        midend_size(myMidend, &maxX, &maxY, true);
-
-        viewFrame.origin.x = viewFrame.origin.x + (viewFrame.size.width - maxX) / 2;
-        viewFrame.origin.y = viewFrame.origin.y + (viewFrame.size.height - maxY) / 2;
-        viewFrame.size.width = maxX;
-        viewFrame.size.height = maxY;
-
-        PuzzlesDrawingView *dv = [[PuzzlesDrawingView alloc] initWithFrame:viewFrame midend:myMidend];
-        dv.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin
-        	| UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-        frontend_wrapper.drawingView = dv;
-        self.drawingView = dv;
-        [dv release];
-
-        [self.view addSubview:dv];
-
-        midend_redraw(myMidend);
     }
     return self;
 }
 
+-(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self.puzzleView layoutSubviews];
+}
+
+
 // Assuming single touch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *t = [touches anyObject];
-    CGPoint p = [t locationInView:self.drawingView];
+    CGPoint p = [t locationInView:self.puzzleView];
+    p = [self.puzzleView locationInViewToGamePoint:p];
     midend_process_key(myMidend, p.x, p.y, LEFT_BUTTON);
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *t = [touches anyObject];
-    CGPoint p = [t locationInView:self.drawingView];
+    CGPoint p = [t locationInView:self.puzzleView];
+    p = [self.puzzleView locationInViewToGamePoint:p];
     midend_process_key(myMidend, p.x, p.y, LEFT_DRAG);
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *t = [touches anyObject];
-    CGPoint p = [t locationInView:self.drawingView];
+    CGPoint p = [t locationInView:self.puzzleView];
+    p = [self.puzzleView locationInViewToGamePoint:p];
     midend_process_key(myMidend, p.x, p.y, LEFT_RELEASE);
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *t = [touches anyObject];
-    CGPoint p = [t locationInView:self.drawingView];
+    CGPoint p = [t locationInView:self.puzzleView];
+    p = [self.puzzleView locationInViewToGamePoint:p];
     midend_process_key(myMidend, p.x, p.y, LEFT_RELEASE);
-}
-
-+ (void)randomSeed:(void**)randseed size:(int*)randseedsize {
-    time_t *tp = snew(time_t);
-    time(tp);
-    *randseed = (void *)tp;
-    *randseedsize = sizeof(time_t);
-}
-
-+ (void)fatal:(NSString*)message {
-    [NSException raise:@"FrontEndFatal" format:@"%@", message];
 }
 
 - (void)defaultColour:(float*)output {
@@ -155,9 +117,10 @@
 - (NSArray*)configurationActions {
     if (!configurationActions) {
         NSMutableArray *actions = [NSMutableArray array];
-        [actions addObject:@"Solve"];
-        [actions addObject:@"Restart"];
-        [actions addObject:@"New"];
+        if (myGame->can_solve) {
+            [actions addObject:@"Solve"];
+        }
+        [actions addObject:@"Configure"];
         configurationActions = [actions retain];
     }
     return configurationActions;
@@ -176,12 +139,35 @@
     [sheet showInView:self.view];
 }
 
+#pragma mark -
+#pragma mark Game Interface
+
+- (IBAction)undo:(id)sender {
+    midend_process_key(myMidend, -1, -1, 'u');
+}
+
+- (IBAction)redo:(id)sender {
+    midend_process_key(myMidend, -1, -1, 'r');
+}
+
+- (IBAction)restart:(id)sender {
+    midend_restart_game(myMidend);
+}
+
+- (IBAction)new:(id)sender {
+    midend_process_key(myMidend, -1, -1, 'n');
+}
+
+- (void)gameParamsChanged {
+    gameParamsChanged = YES;
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         return;
     }
     else {
-        NSString *action = [[self configurationActions] objectAtIndex:buttonIndex-1];
+        NSString *action = [actionSheet buttonTitleAtIndex:buttonIndex];
         if ([action isEqualToString:@"Solve"]) {
             char *result = midend_solve(myMidend);
             if (result) {
@@ -194,12 +180,23 @@
                  show];
             }
         }
-        else if ([action isEqualToString:@"Restart"]) {
-            midend_restart_game(myMidend);
+        else if ([action isEqualToString:@"Configure"]) {
+            UIViewController *vc = [[PuzzlesConfigurationViewController alloc] initWithFrontEnd:self midend:myMidend game:myGame];
+            [self.navigationController pushViewController:vc animated:YES];
+            [vc release];
         }
-        else if ([action isEqualToString:@"New"]) {
-            midend_process_key(myMidend, -1, -1, 'n');
-        }
+    }
+}
+
+
+#pragma mark -
+#pragma mark View Lifecycle
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (gameParamsChanged) {
+        gameParamsChanged = NO;
+        [self new:self];
+        [self.puzzleView layoutSubviews];
     }
 }
 
@@ -214,18 +211,46 @@
     [self deactivateTimer];
 }
 
+- (void)viewDidLoad {
+    self.puzzleView.midend = myMidend;
+    frontend_wrapper.drawingView = self.puzzleView;
+
+    if (!midend_wants_statusbar(myMidend)) {
+        CGRect labelFrame = self.statusLabel.frame;
+        CGRect puzzleFrame = self.puzzleView.frame;
+        self.puzzleView.frame = CGRectUnion(puzzleFrame, labelFrame);
+    }
+
+    [self.puzzleView layoutSubviews];
+}
+
 - (void)viewDidUnload {
-    self.drawingView = nil;
     self.statusLabel = nil;
+    self.puzzleView = nil;
 }
 
 - (void) dealloc {
     [configurationActions release];
-    self.drawingView = nil;
     self.statusLabel = nil;
+    self.puzzleView = nil;
     midend_free(myMidend);
     [super dealloc];
 }
+
+#pragma mark -
+#pragma mark Non-Game Frontend
+
++ (void)randomSeed:(void**)randseed size:(int*)randseedsize {
+    time_t *tp = snew(time_t);
+    time(tp);
+    *randseed = (void *)tp;
+    *randseedsize = sizeof(time_t);
+}
+
++ (void)fatal:(NSString*)message {
+    [NSException raise:@"FrontEndFatal" format:@"%@", message];
+}
+
 
 @end
 
