@@ -142,6 +142,8 @@
 		48B6716810D776D300B244DF /* PuzzlesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PuzzlesListViewController.xib; sourceTree = "<group>"; };
 		48B6724F10D7893900B244DF /* PuzzlesDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesDrawingView.h; sourceTree = "<group>"; };
 		48B6725010D7893900B244DF /* PuzzlesDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzlesDrawingView.m; sourceTree = "<group>"; };
+		48FFC6D8110A8E3700A11146 /* PuzzlesParametersDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesParametersDelegate.h; sourceTree = "<group>"; };
+		48FFC6F5110A94FE00A11146 /* PuzzlesConfigurationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesConfigurationDelegate.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Puzzles-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Puzzles-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,6 +172,8 @@
 				48B6716710D776D300B244DF /* PuzzlesListViewController.m */,
 				48B6724F10D7893900B244DF /* PuzzlesDrawingView.h */,
 				48B6725010D7893900B244DF /* PuzzlesDrawingView.m */,
+				48FFC6D8110A8E3700A11146 /* PuzzlesParametersDelegate.h */,
+				48FFC6F5110A94FE00A11146 /* PuzzlesConfigurationDelegate.h */,
 				4888AE0610EDA6F60059E5C4 /* PuzzlesConfigurationViewController.h */,
 				4888AE0710EDA6F60059E5C4 /* PuzzlesConfigurationViewController.m */,
 				4888B1BA10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.h */,

@@ -3,6 +3,8 @@
 
 #include "puzzles.h"
 
+#import "PuzzlesParametersDelegate.h"
+
 @class PuzzlesFrontEnd, PuzzlesDrawingView;
 
 struct frontend {
@@ -10,7 +12,7 @@ struct frontend {
     PuzzlesDrawingView *drawingView;
 };
 
-@interface PuzzlesFrontEnd : UIViewController<UIActionSheetDelegate> {
+@interface PuzzlesFrontEnd : UIViewController<UIActionSheetDelegate,PuzzlesParametersDelegate> {
     frontend frontend_wrapper;
     const game *myGame;
     midend *myMidend;
@@ -48,7 +50,5 @@ struct frontend {
 - (IBAction)redo:(id)sender;
 - (IBAction)restart:(id)sender;
 - (IBAction)new:(id)sender;
-
-- (void)gameParamsChanged;
 
 @end

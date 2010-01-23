@@ -158,7 +158,7 @@
     midend_process_key(myMidend, -1, -1, 'n');
 }
 
-- (void)gameParamsChanged {
+- (void)gameParametersChanged {
     gameParamsChanged = YES;
 }
 
@@ -181,7 +181,7 @@
             }
         }
         else if ([action isEqualToString:@"Configure"]) {
-            UIViewController *vc = [[PuzzlesConfigurationViewController alloc] initWithFrontEnd:self midend:myMidend game:myGame];
+            UIViewController *vc = [[PuzzlesConfigurationViewController alloc] initWithDelegate:self midend:myMidend game:myGame];
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
         }

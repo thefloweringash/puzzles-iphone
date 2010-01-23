@@ -1,7 +1,9 @@
 #import "PuzzlesConfigurationChoicesViewController.h"
-
+#import "PuzzlesConfigurationDelegate.h"
 
 @implementation PuzzlesConfigurationChoicesViewController
+
+@synthesize delegate;
 
 - (id)initWithConfigItem:(config_item*)aConfigItem choicesCache:(NSArray*)theChoices {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
@@ -61,10 +63,12 @@
 
         UITableViewCell *newSelectionCell = [tableView cellForRowAtIndexPath:indexPath];
         newSelectionCell.accessoryType = UITableViewCellAccessoryCheckmark;
+
+        configItem->ival = newSelection;
+        [delegate gameConfigItemChanged:configItem];
     }
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    configItem->ival = indexPath.row;
 }
 
 - (void)dealloc {

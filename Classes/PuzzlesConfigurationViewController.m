@@ -1,6 +1,6 @@
 #import "PuzzlesConfigurationViewController.h"
 
-#import "PuzzlesFrontEnd.h"
+#import "PuzzlesParametersDelegate.h"
 #import "PuzzlesConfigurationChoicesViewController.h"
 
 #include "puzzles.h"
@@ -13,12 +13,13 @@ static const int kPuzzlesConfigurationViewControllerCustomConfigSection = 1;
 
 @synthesize configSectionTitle;
 
-- (id)initWithFrontEnd:(PuzzlesFrontEnd*)aPuzzlesFrontEnd midend:(midend*)aMidend game:(const game*)aGame {
+- (id)initWithDelegate:(id<PuzzlesParametersDelegate>)paramDelegate midend:(midend*)aMidend game:(const game*)aGame {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        puzzlesFrontEnd = aPuzzlesFrontEnd;
+        delegate = paramDelegate;
         myMidend = aMidend;
         myGame = aGame;
         oldPreset = midend_which_preset(myMidend);
+        isCustom = oldPreset == -1;
 
         canConfigure = myGame->can_configure;
         if (canConfigure) {
@@ -28,16 +29,28 @@ static const int kPuzzlesConfigurationViewControllerCustomConfigSection = 1;
             sfree(wintitle);
 
             NSMutableDictionary *mutableCache = [NSMutableDictionary dictionary];
+            NSMutableDictionary *mutableTextFields = [NSMutableDictionary dictionary];
             config_item *ci = configItems;
             while (ci->type != C_END) {
-                if (ci->type == C_CHOICES) {
-                    [mutableCache setObject:[[self class] splitChoices:ci->sval]
-                                     forKey:[NSNumber numberWithInt:configItemCount]];
+                switch (ci->type) {
+                    case C_CHOICES: {
+                        [mutableCache setObject:[[self class] splitChoices:ci->sval]
+                                         forKey:[NSNumber numberWithInt:configItemCount]];
+                        break;
+                    }
+                    case C_STRING: {
+                        UITextField *tf = [[UITextField alloc] initWithFrame:CGRectZero];
+                        tf.delegate = self;
+                        [mutableTextFields setObject:tf
+                                              forKey:[NSNumber numberWithInt:configItemCount]];
+                        break;
+                    }
                 }
 
                 configItemCount++;
                 ci++;
             }
+            persistentTextFields = [mutableTextFields retain];
             configCache = [mutableCache retain];
         }
     }
@@ -105,6 +118,12 @@ static const int kPuzzlesConfigurationViewControllerCustomConfigSection = 1;
     [self reapplyConfigItems:NO];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    if (isCustom) {
+        [self writeTextFieldConfigItems];
+    }
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
@@ -120,7 +139,7 @@ static const int kPuzzlesConfigurationViewControllerCustomConfigSection = 1;
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (canConfigure) {
+    if (canConfigure && isCustom) {
         return 2;
     }
     else {
@@ -132,7 +151,7 @@ static const int kPuzzlesConfigurationViewControllerCustomConfigSection = 1;
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == kPuzzlesConfigurationViewControllerPresetsSection) {
-        return midend_num_presets(myMidend);
+        return midend_num_presets(myMidend) + (canConfigure ? 1 : 0);
     }
     else if (section == kPuzzlesConfigurationViewControllerCustomConfigSection) {
         return configItemCount;
@@ -155,18 +174,25 @@ static const int kPuzzlesConfigurationViewControllerCustomConfigSection = 1;
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         }
 
-        char *name;
-        game_params *params;
-        midend_fetch_preset(myMidend, indexPath.row, &name, &params);
-        cell.textLabel.text = [NSString stringWithCString:name encoding:NSASCIIStringEncoding];
-        cell.accessoryType = indexPath.row == oldPreset ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        if (midend_num_presets(myMidend) == indexPath.row) {
+            cell.textLabel.text = @"Custom";
+            cell.accessoryType = isCustom ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        }
+        else {
+            char *name;
+            game_params *params;
+            midend_fetch_preset(myMidend, indexPath.row, &name, &params);
+            cell.textLabel.text = [NSString stringWithCString:name encoding:NSASCIIStringEncoding];
+            cell.accessoryType = indexPath.row == oldPreset ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        }
+
     }
     else if (indexPath.section == kPuzzlesConfigurationViewControllerCustomConfigSection) {
         config_item *item = &configItems[indexPath.row];
         if (item->type == C_STRING) {
             static NSString *CellIdentifier = @"ConfigCell_String";
 
-            UITextField *tf;
+            UITextField *tf = [persistentTextFields objectForKey:[NSNumber numberWithInt:indexPath.row]];
 
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (cell == nil) {
@@ -175,16 +201,10 @@ static const int kPuzzlesConfigurationViewControllerCustomConfigSection = 1;
 
                 CGFloat width = cell.contentView.bounds.size.width;
                 CGFloat height = cell.contentView.bounds.size.height;
-                CGRect textFieldRect = CGRectMake(0, 0, width / 3, height / 2);
-                tf = [[UITextField alloc] initWithFrame:textFieldRect];
-                tf.delegate = self;
-                cell.accessoryView = tf;
-                [tf release];
-            }
-            else {
-                tf = (UITextField*)cell.accessoryView;
+                tf.frame = CGRectMake(0, 0, width / 3, height / 2);
             }
 
+            cell.accessoryView = tf;
             tf.text = [NSString stringWithCString:item->sval encoding:NSASCIIStringEncoding];
         }
         else if (item->type == C_BOOLEAN) {
@@ -199,6 +219,7 @@ static const int kPuzzlesConfigurationViewControllerCustomConfigSection = 1;
                 cell.selectionStyle = UITableViewCellSeparatorStyleNone;
 
                 sw = [[UISwitch alloc] initWithFrame:CGRectZero];
+                [sw addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
                 cell.accessoryView = sw;
                 [sw release];
             }
@@ -242,27 +263,55 @@ static const int kPuzzlesConfigurationViewControllerCustomConfigSection = 1;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == kPuzzlesConfigurationViewControllerPresetsSection) {
-        int newPreset = indexPath.row;
-        if (newPreset != oldPreset) {
-            if (oldPreset >= 0) {
-                UITableViewCell *oldPresetCell =
-	            	[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:oldPreset
-                                                                        inSection:kPuzzlesConfigurationViewControllerPresetsSection]];
-                oldPresetCell.accessoryType = UITableViewCellAccessoryNone;
+        BOOL presetDidChange = NO;
+        int newPreset = -1;
+
+        if (indexPath.row == midend_num_presets(myMidend)) {
+            if (!isCustom) {
+                presetDidChange = YES;
+                isCustom = YES;
+
+                [tableView insertSections:[NSIndexSet indexSetWithIndex:kPuzzlesConfigurationViewControllerCustomConfigSection]
+                         withRowAnimation:UITableViewRowAnimationTop];
+
+                [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:kPuzzlesConfigurationViewControllerCustomConfigSection]
+                                 atScrollPosition:UITableViewScrollPositionTop animated:YES];
             }
-            oldPreset = indexPath.row;
-
-            char *name;
-            game_params *params;
-            midend_fetch_preset(myMidend, newPreset, &name, &params);
-            midend_set_params(myMidend, params);
-
-            UITableViewCell *newPresetCell = [tableView cellForRowAtIndexPath:indexPath];
-            newPresetCell.accessoryType = UITableViewCellAccessoryCheckmark;
-
-            [self reapplyConfigItems:YES];
-            [puzzlesFrontEnd gameParamsChanged];
         }
+        else {
+            if (isCustom) {
+                isCustom = NO;
+                [tableView deleteSections:[NSIndexSet indexSetWithIndex:kPuzzlesConfigurationViewControllerCustomConfigSection]
+                         withRowAnimation:UITableViewRowAnimationTop];
+
+                UITableViewCell *customCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:midend_num_presets(myMidend)
+                                                                                                  inSection:kPuzzlesConfigurationViewControllerPresetsSection]];
+                customCell.accessoryType = UITableViewCellAccessoryNone;
+            }
+
+            newPreset = indexPath.row;
+            if (newPreset != oldPreset) {
+                presetDidChange = YES;
+                char *name;
+                game_params *params;
+                midend_fetch_preset(myMidend, newPreset, &name, &params);
+                midend_set_params(myMidend, params);
+
+                [self reapplyConfigItems:YES];
+                [delegate gameParametersChanged];
+            }
+        }
+
+        if (presetDidChange && oldPreset >= 0) {
+            UITableViewCell *oldPresetCell =
+            	[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:oldPreset
+                                                                    inSection:kPuzzlesConfigurationViewControllerPresetsSection]];
+            oldPresetCell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        oldPreset = newPreset;
+
+        UITableViewCell *newPresetCell = [tableView cellForRowAtIndexPath:indexPath];
+        newPresetCell.accessoryType = UITableViewCellAccessoryCheckmark;
 
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
@@ -270,7 +319,8 @@ static const int kPuzzlesConfigurationViewControllerCustomConfigSection = 1;
         config_item *item = &configItems[indexPath.row];
         NSArray *choicesCache = [configCache objectForKey:[NSNumber numberWithInt:indexPath.row]];
         if (item->type == C_CHOICES) {
-            UIViewController *vc =  [[PuzzlesConfigurationChoicesViewController alloc] initWithConfigItem:item choicesCache:choicesCache];
+            PuzzlesConfigurationChoicesViewController *vc =  [[PuzzlesConfigurationChoicesViewController alloc] initWithConfigItem:item choicesCache:choicesCache];
+            vc.delegate = self;
             [self.navigationController pushViewController:vc animated:YES];
             [vc release];
         }
@@ -282,11 +332,75 @@ static const int kPuzzlesConfigurationViewControllerCustomConfigSection = 1;
     return YES;
 }
 
+- (void)textFieldDidEndEditing:(UITextField*)textField {
+    // TODO: would be nicer to only select tf's items
+    [self writeTextFieldConfigItems];
+}
+
+- (void)gameConfigItemChanged:(config_item *)item {
+    char *error = midend_set_config(myMidend, CFG_SETTINGS, configItems);
+    if (error) {
+        NSLog(@"Error setting game parameters: %s", error);
+    }
+    [delegate gameParametersChanged];
+}
+
+- (void)switchValueChanged:(id)sender {
+    UISwitch *sw = sender;
+
+    config_item *item = configItems;
+    int row = 0;
+    while (item->type != C_END) {
+        if (item->type == C_BOOLEAN) {
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row
+                                                                                             inSection:kPuzzlesConfigurationViewControllerCustomConfigSection]];
+            if (cell.accessoryView == sw) {
+                item->ival = sw.on;
+                [self gameConfigItemChanged:item];
+                break;
+            }
+        }
+
+        item++;
+        row++;
+    }
+}
+
+- (void)writeTextFieldConfigItems {
+    config_item *item = configItems;
+    int row = 0;
+    BOOL didChange = NO;
+    while (item->type != C_END) {
+        if (item->type == C_STRING) {
+            UITextField *tf = [persistentTextFields objectForKey:[NSNumber numberWithInt:row]];
+            const char *newValue = [tf.text cStringUsingEncoding:NSASCIIStringEncoding];
+            if (newValue && strcmp(newValue, item->sval)) {
+                free(item->sval);
+                item->sval = strdup([tf.text cStringUsingEncoding:NSASCIIStringEncoding]);
+                didChange = YES;
+            }
+        }
+
+        item++;
+        row++;
+    }
+
+    if (didChange) {
+        char *error = midend_set_config(myMidend, CFG_SETTINGS, configItems);
+        if (error) {
+            NSLog(@"Error setting game parameters: %s", error);
+        }
+        [delegate gameParametersChanged];
+    }
+}
+
 - (void)dealloc {
     if (configItems) {
         free_cfg(configItems);
         configItems = NULL;
     }
+    [persistentTextFields release];
+    persistentTextFields = nil;
     [configCache release];
     configCache = nil;
     [super dealloc];
