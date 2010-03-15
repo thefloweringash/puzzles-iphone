@@ -66,6 +66,11 @@
 		48B6716910D776D300B244DF /* PuzzlesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B6716710D776D300B244DF /* PuzzlesListViewController.m */; };
 		48B6716A10D776D300B244DF /* PuzzlesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48B6716810D776D300B244DF /* PuzzlesListViewController.xib */; };
 		48B6725110D7893900B244DF /* PuzzlesDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B6725010D7893900B244DF /* PuzzlesDrawingView.m */; };
+		48E53D67114DE3F7007D7D21 /* towers.c in Sources */ = {isa = PBXBuildFile; fileRef = 48E53D66114DE3F7007D7D21 /* towers.c */; };
+		48E53D69114DE424007D7D21 /* keen.c in Sources */ = {isa = PBXBuildFile; fileRef = 48E53D68114DE424007D7D21 /* keen.c */; };
+		48E53D6B114DE42C007D7D21 /* magnets.c in Sources */ = {isa = PBXBuildFile; fileRef = 48E53D6A114DE42C007D7D21 /* magnets.c */; };
+		48E53D6F114DE439007D7D21 /* singles.c in Sources */ = {isa = PBXBuildFile; fileRef = 48E53D6E114DE439007D7D21 /* singles.c */; };
+		48E53D71114DE440007D7D21 /* signpost.c in Sources */ = {isa = PBXBuildFile; fileRef = 48E53D70114DE440007D7D21 /* signpost.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,6 +147,11 @@
 		48B6716810D776D300B244DF /* PuzzlesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PuzzlesListViewController.xib; sourceTree = "<group>"; };
 		48B6724F10D7893900B244DF /* PuzzlesDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesDrawingView.h; sourceTree = "<group>"; };
 		48B6725010D7893900B244DF /* PuzzlesDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzlesDrawingView.m; sourceTree = "<group>"; };
+		48E53D66114DE3F7007D7D21 /* towers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = towers.c; sourceTree = "<group>"; };
+		48E53D68114DE424007D7D21 /* keen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = keen.c; sourceTree = "<group>"; };
+		48E53D6A114DE42C007D7D21 /* magnets.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = magnets.c; sourceTree = "<group>"; };
+		48E53D6E114DE439007D7D21 /* singles.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = singles.c; sourceTree = "<group>"; };
+		48E53D70114DE440007D7D21 /* signpost.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = signpost.c; sourceTree = "<group>"; };
 		48FFC6D8110A8E3700A11146 /* PuzzlesParametersDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesParametersDelegate.h; sourceTree = "<group>"; };
 		48FFC6F5110A94FE00A11146 /* PuzzlesConfigurationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesConfigurationDelegate.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Puzzles-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Puzzles-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -251,7 +261,9 @@
 				48B670C410D76FCF00B244DF /* guess.c */,
 				48B670C510D76FCF00B244DF /* inertia.c */,
 				48B670C610D76FCF00B244DF /* lightup.c */,
+				48E53D68114DE424007D7D21 /* keen.c */,
 				48B670C710D76FCF00B244DF /* loopy.c */,
+				48E53D6A114DE42C007D7D21 /* magnets.c */,
 				48B670C810D76FCF00B244DF /* map.c */,
 				48B670C910D76FCF00B244DF /* mines.c */,
 				48B670CA10D76FCF00B244DF /* net.c */,
@@ -261,10 +273,13 @@
 				48B670CE10D76FCF00B244DF /* pegs.c */,
 				48B6714E10D7728700B244DF /* rect.c */,
 				48B670CF10D76FCF00B244DF /* samegame.c */,
+				48E53D70114DE440007D7D21 /* signpost.c */,
+				48E53D6E114DE439007D7D21 /* singles.c */,
 				48B670D010D76FCF00B244DF /* sixteen.c */,
 				48B670D110D76FCF00B244DF /* slant.c */,
 				48B670D210D76FCF00B244DF /* solo.c */,
 				48B670D310D76FCF00B244DF /* tents.c */,
+				48E53D66114DE3F7007D7D21 /* towers.c */,
 				48B670D410D76FCF00B244DF /* twiddle.c */,
 				48B670D510D76FCF00B244DF /* unequal.c */,
 				48B670D610D76FCF00B244DF /* untangle.c */,
@@ -410,6 +425,11 @@
 				48B6725110D7893900B244DF /* PuzzlesDrawingView.m in Sources */,
 				4888AE0910EDA6F60059E5C4 /* PuzzlesConfigurationViewController.m in Sources */,
 				4888B1BD10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.m in Sources */,
+				48E53D67114DE3F7007D7D21 /* towers.c in Sources */,
+				48E53D69114DE424007D7D21 /* keen.c in Sources */,
+				48E53D6B114DE42C007D7D21 /* magnets.c in Sources */,
+				48E53D6F114DE439007D7D21 /* singles.c in Sources */,
+				48E53D71114DE440007D7D21 /* signpost.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
