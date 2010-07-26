@@ -7,7 +7,7 @@
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-
+    window.frame = [[UIScreen mainScreen] bounds];
     [window addSubview:initialViewController.view];
     [window makeKeyAndVisible];
 }

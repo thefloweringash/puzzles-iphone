@@ -125,7 +125,12 @@ static const int kPuzzlesConfigurationViewControllerCustomConfigSection = 1;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return YES;
+    }
+    else {
+        return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+    }
 }
 
 

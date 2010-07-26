@@ -27,7 +27,7 @@
         self.navigationItem.rightBarButtonItem =
         	[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                                            target:self
-                                                           action:@selector(showConfigureMenu)]
+                                                           action:@selector(showConfigureMenu:)]
              autorelease];
 
         myMidend = midend_new(&frontend_wrapper, myGame,
@@ -39,7 +39,12 @@
 }
 
 -(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return YES;
+    }
+    else {
+        return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+    }
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -126,17 +131,32 @@
     return configurationActions;
 }
 
-- (void)showConfigureMenu {
+- (IBAction)showConfigureMenu:(id)sender {
     UIActionSheet *sheet = [[[UIActionSheet alloc] initWithTitle:@"Configure"
                                                         delegate:self
-                                               cancelButtonTitle:@"Cancel"
+                                               cancelButtonTitle:nil
                                           destructiveButtonTitle:nil
                                                otherButtonTitles:nil]
                             autorelease];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        [sheet addButtonWithTitle:@"Cancel"];
+        sheet.cancelButtonIndex = 0;
+    }
     for (NSString *action in [self configurationActions]) {
         [sheet addButtonWithTitle:action];
     }
-    [sheet showInView:self.view];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [sheet showFromBarButtonItem:sender animated:YES];
+    }
+    else {
+        [sheet showInView:self.view];
+    }
+}
+
+- (IBAction)hideConfigureMenu:(id)sender {
+    [self viewWillAppear:YES];
+    [self dismissModalViewControllerAnimated:YES];
+    [self viewDidAppear:YES];
 }
 
 #pragma mark -
@@ -163,7 +183,7 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
         return;
     }
     else {
@@ -182,7 +202,22 @@
         }
         else if ([action isEqualToString:@"Configure"]) {
             UIViewController *vc = [[PuzzlesConfigurationViewController alloc] initWithDelegate:self midend:myMidend game:myGame];
-            [self.navigationController pushViewController:vc animated:YES];
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+                vc.navigationItem.rightBarButtonItem =
+                    [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                   target:self
+                                                                   action:@selector(hideConfigureMenu:)]
+                     autorelease];
+                nc.modalPresentationStyle = UIModalPresentationFormSheet;
+                nc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+                [self presentModalViewController:nc animated:YES];
+                [nc release];
+                [self viewDidDisappear:YES];
+            }
+            else {
+                [self.navigationController pushViewController:vc animated:YES];
+            }
             [vc release];
         }
     }

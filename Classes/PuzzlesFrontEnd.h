@@ -44,7 +44,7 @@ struct frontend {
 - (void)setStatusText:(NSString*)status;
 
 - (NSArray*)configurationActions;
-- (void)showConfigureMenu;
+- (IBAction)showConfigureMenu:(id)sender;
 
 - (IBAction)undo:(id)sender;
 - (IBAction)redo:(id)sender;
