@@ -132,20 +132,30 @@
 }
 
 - (IBAction)showConfigureMenu:(id)sender {
+    BOOL isPad = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+    BOOL isPhone = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+
+    if (isPad && popoverConfigurationMenu) {
+        return;
+    }
+
     UIActionSheet *sheet = [[[UIActionSheet alloc] initWithTitle:@"Configure"
                                                         delegate:self
                                                cancelButtonTitle:nil
                                           destructiveButtonTitle:nil
                                                otherButtonTitles:nil]
                             autorelease];
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+    if (isPad) {
+        popoverConfigurationMenu = [sheet retain];
+    }
+    if (isPhone) {
         [sheet addButtonWithTitle:@"Cancel"];
         sheet.cancelButtonIndex = 0;
     }
     for (NSString *action in [self configurationActions]) {
         [sheet addButtonWithTitle:action];
     }
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (isPad) {
         [sheet showFromBarButtonItem:sender animated:YES];
     }
     else {
@@ -183,6 +193,7 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    popoverConfigurationMenu = nil;
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         return;
     }

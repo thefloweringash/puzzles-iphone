@@ -27,6 +27,8 @@ struct frontend {
 
     PuzzlesDrawingView *puzzleView;
     BOOL gameParamsChanged;
+
+    UIActionSheet *popoverConfigurationMenu;
 }
 
 @property (nonatomic, retain) IBOutlet PuzzlesDrawingView *puzzleView;
