@@ -11,7 +11,7 @@ static CGContextRef create_bitmap_context(int w, int h) {
     CGContextRef context = NULL;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 
-    context = CGBitmapContextCreate(NULL, w, h, 5, 0, colorSpace, kCGImageAlphaNoneSkipFirst);
+    context = CGBitmapContextCreate(NULL, w, h, 8, 0, colorSpace, kCGImageAlphaNoneSkipFirst);
 
     CGColorSpaceRelease(colorSpace);
     return context;
