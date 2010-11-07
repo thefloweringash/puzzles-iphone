@@ -313,8 +313,8 @@ static void iphone_dr_line_dotted(void *handle, int dotted)
             NSLog(@"midend requested size: %ix%i", maxX, maxY);
             puzzleSubframe.size = CGSizeMake(maxX, maxY);
         }
-        puzzleSubframe.origin.x = (self.bounds.size.width - puzzleSubframe.size.width) / 2;
-        puzzleSubframe.origin.y = (self.bounds.size.height - puzzleSubframe.size.height) / 2;
+        puzzleSubframe.origin.x = floor((self.bounds.size.width - puzzleSubframe.size.width) / 2);
+        puzzleSubframe.origin.y = floor((self.bounds.size.height - puzzleSubframe.size.height) / 2);
 
         backingContext = create_bitmap_context(puzzleSubframe.size.width, puzzleSubframe.size.height);
         [self setNeedsDisplay];
