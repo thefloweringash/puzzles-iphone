@@ -134,7 +134,7 @@ static void iphone_dr_draw_circle(void *handle, int cx, int cy, int radius,
     CGContextSetAllowsAntialiasing(c, YES);
     CGContextSetStrokeColorWithColor(c, [[colours objectAtIndex:outlinecolour] CGColor]);
 
-    CGContextAddEllipseInRect(c, CGRectMake(cx-radius, cy-radius, radius*2, radius*2));
+    CGContextAddEllipseInRect(c, CGRectMake(cx-radius+0.5, cy-radius+0.5, radius*2-1, radius*2-1));
 
     if (fillcolour != -1) {
         CGContextSetFillColorWithColor(c, [[colours objectAtIndex:fillcolour] CGColor]);
