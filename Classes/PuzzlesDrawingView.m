@@ -233,13 +233,12 @@ static void iphone_dr_blitter_load(void *handle, blitter *bl, int x, int y)
 {
     PuzzlesDrawingView *view = drawingView_from_handle(handle);
     CGContextRef c = view.backingContext;
-    if (x != BLITTER_FROMSAVED) {
-        bl->rect.origin.x = x;
+    CGRect targetRect = bl->rect;
+    if (x != BLITTER_FROMSAVED || y != BLITTER_FROMSAVED) {
+        targetRect.origin.x = x;
+        targetRect.origin.y = y;
     }
-    if (y != BLITTER_FROMSAVED) {
-        bl->rect.origin.y = y;
-    }
-    CGContextDrawImage(c, bl->rect, bl->image);
+    CGContextDrawImage(c, targetRect, bl->image);
 }
 static void iphone_dr_line_width(void *handle, float width)
 {
