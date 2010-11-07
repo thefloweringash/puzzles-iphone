@@ -344,7 +344,14 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Puzzles" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -448,7 +455,6 @@
 				GCC_PREFIX_HEADER = Puzzles_Prefix.pch;
 				INFOPLIST_FILE = "Puzzles-Info.plist";
 				PRODUCT_NAME = Puzzles;
-				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -463,7 +469,6 @@
 				GCC_PREFIX_HEADER = Puzzles_Prefix.pch;
 				INFOPLIST_FILE = "Puzzles-Info.plist";
 				PRODUCT_NAME = Puzzles;
-				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -477,8 +482,9 @@
 				GCC_PREPROCESSOR_DEFINITIONS = COMBINED;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -491,8 +497,9 @@
 				GCC_PREPROCESSOR_DEFINITIONS = COMBINED;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
