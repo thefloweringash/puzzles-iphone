@@ -19,6 +19,7 @@
 		4888AE0A10EDA6F60059E5C4 /* PuzzlesConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4888AE0810EDA6F60059E5C4 /* PuzzlesConfigurationViewController.xib */; };
 		4888B1BD10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4888B1BB10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.m */; };
 		4888B1BE10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4888B1BC10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.xib */; };
+		489504F51286A8AF00E4D40A /* range.c in Sources */ = {isa = PBXBuildFile; fileRef = 489504F41286A8AF00E4D40A /* range.c */; };
 		48B670BC10D76F9100B244DF /* blackbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670BA10D76F9100B244DF /* blackbox.c */; };
 		48B670BD10D76F9100B244DF /* bridges.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670BB10D76F9100B244DF /* bridges.c */; };
 		48B670D710D76FCF00B244DF /* cube.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670BE10D76FCF00B244DF /* cube.c */; };
@@ -91,6 +92,7 @@
 		4888B1BA10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesConfigurationChoicesViewController.h; sourceTree = "<group>"; };
 		4888B1BB10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzlesConfigurationChoicesViewController.m; sourceTree = "<group>"; };
 		4888B1BC10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PuzzlesConfigurationChoicesViewController.xib; sourceTree = "<group>"; };
+		489504F41286A8AF00E4D40A /* range.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = range.c; sourceTree = "<group>"; };
 		48B670BA10D76F9100B244DF /* blackbox.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blackbox.c; sourceTree = "<group>"; };
 		48B670BB10D76F9100B244DF /* bridges.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bridges.c; sourceTree = "<group>"; };
 		48B670BE10D76FCF00B244DF /* cube.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cube.c; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				48B670CC10D76FCF00B244DF /* nullgame.c */,
 				48B670CD10D76FCF00B244DF /* pattern.c */,
 				48B670CE10D76FCF00B244DF /* pegs.c */,
+				489504F41286A8AF00E4D40A /* range.c */,
 				48B6714E10D7728700B244DF /* rect.c */,
 				48B670CF10D76FCF00B244DF /* samegame.c */,
 				48E53D70114DE440007D7D21 /* signpost.c */,
@@ -437,6 +440,7 @@
 				48E53D6B114DE42C007D7D21 /* magnets.c in Sources */,
 				48E53D6F114DE439007D7D21 /* singles.c in Sources */,
 				48E53D71114DE440007D7D21 /* signpost.c in Sources */,
+				489504F51286A8AF00E4D40A /* range.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
