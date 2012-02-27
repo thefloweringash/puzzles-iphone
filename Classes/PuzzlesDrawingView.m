@@ -310,7 +310,6 @@ static void iphone_dr_line_dotted(void *handle, int dotted)
             int maxX = puzzleSubframe.size.width;
             int maxY = puzzleSubframe.size.height;
             midend_size(myMidend, &maxX, &maxY, true);
-            NSLog(@"midend requested size: %ix%i", maxX, maxY);
             puzzleSubframe.size = CGSizeMake(maxX, maxY);
         }
         puzzleSubframe.origin.x = floor((self.bounds.size.width - puzzleSubframe.size.width) / 2);
