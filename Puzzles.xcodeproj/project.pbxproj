@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,10 @@
 		4888AE0A10EDA6F60059E5C4 /* PuzzlesConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4888AE0810EDA6F60059E5C4 /* PuzzlesConfigurationViewController.xib */; };
 		4888B1BD10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4888B1BB10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.m */; };
 		4888B1BE10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4888B1BC10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.xib */; };
+		48911C2714FB8C4C00EEA5D0 /* penrose.c in Sources */ = {isa = PBXBuildFile; fileRef = 48911C2614FB8C4C00EEA5D0 /* penrose.c */; };
+		48911C2B14FB8C7700EEA5D0 /* loopgen.c in Sources */ = {isa = PBXBuildFile; fileRef = 48911C2A14FB8C7700EEA5D0 /* loopgen.c */; };
+		48911C2D14FB8C9E00EEA5D0 /* tdq.c in Sources */ = {isa = PBXBuildFile; fileRef = 48911C2C14FB8C9E00EEA5D0 /* tdq.c */; };
+		48911C2F14FB8CAA00EEA5D0 /* pearl.c in Sources */ = {isa = PBXBuildFile; fileRef = 48911C2E14FB8CAA00EEA5D0 /* pearl.c */; };
 		489504F51286A8AF00E4D40A /* range.c in Sources */ = {isa = PBXBuildFile; fileRef = 489504F41286A8AF00E4D40A /* range.c */; };
 		48B670BC10D76F9100B244DF /* blackbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670BA10D76F9100B244DF /* blackbox.c */; };
 		48B670BD10D76F9100B244DF /* bridges.c in Sources */ = {isa = PBXBuildFile; fileRef = 48B670BB10D76F9100B244DF /* bridges.c */; };
@@ -92,6 +96,11 @@
 		4888B1BA10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesConfigurationChoicesViewController.h; sourceTree = "<group>"; };
 		4888B1BB10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzlesConfigurationChoicesViewController.m; sourceTree = "<group>"; };
 		4888B1BC10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PuzzlesConfigurationChoicesViewController.xib; sourceTree = "<group>"; };
+		48911C2614FB8C4C00EEA5D0 /* penrose.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = penrose.c; sourceTree = "<group>"; };
+		48911C2914FB8C7200EEA5D0 /* loopgen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = loopgen.h; sourceTree = "<group>"; };
+		48911C2A14FB8C7700EEA5D0 /* loopgen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loopgen.c; sourceTree = "<group>"; };
+		48911C2C14FB8C9E00EEA5D0 /* tdq.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tdq.c; sourceTree = "<group>"; };
+		48911C2E14FB8CAA00EEA5D0 /* pearl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pearl.c; sourceTree = "<group>"; };
 		489504F41286A8AF00E4D40A /* range.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = range.c; sourceTree = "<group>"; };
 		48B670BA10D76F9100B244DF /* blackbox.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blackbox.c; sourceTree = "<group>"; };
 		48B670BB10D76F9100B244DF /* bridges.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bridges.c; sourceTree = "<group>"; };
@@ -272,6 +281,7 @@
 				48B670CB10D76FCF00B244DF /* netslide.c */,
 				48B670CC10D76FCF00B244DF /* nullgame.c */,
 				48B670CD10D76FCF00B244DF /* pattern.c */,
+				48911C2E14FB8CAA00EEA5D0 /* pearl.c */,
 				48B670CE10D76FCF00B244DF /* pegs.c */,
 				489504F41286A8AF00E4D40A /* range.c */,
 				48B6714E10D7728700B244DF /* rect.c */,
@@ -299,6 +309,8 @@
 				48B6713310D771B700B244DF /* grid.c */,
 				48B6710B10D7709600B244DF /* latin.h */,
 				48B6714A10D7726400B244DF /* latin.c */,
+				48911C2914FB8C7200EEA5D0 /* loopgen.h */,
+				48911C2A14FB8C7700EEA5D0 /* loopgen.c */,
 				48B6710C10D7709600B244DF /* maxflow.h */,
 				48B6710D10D7709600B244DF /* resource.h */,
 				48B6710E10D7709600B244DF /* tree234.h */,
@@ -313,7 +325,9 @@
 				48B6711610D770D600B244DF /* maxflow.c */,
 				48B6711710D770D600B244DF /* midend.c */,
 				48B6711810D770D600B244DF /* misc.c */,
+				48911C2614FB8C4C00EEA5D0 /* penrose.c */,
 				48B6711B10D770D600B244DF /* random.c */,
+				48911C2C14FB8C9E00EEA5D0 /* tdq.c */,
 				48B6711C10D770D600B244DF /* version.c */,
 			);
 			name = "Puzzles Support";
@@ -345,8 +359,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Puzzles" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -441,6 +458,10 @@
 				48E53D6F114DE439007D7D21 /* singles.c in Sources */,
 				48E53D71114DE440007D7D21 /* signpost.c in Sources */,
 				489504F51286A8AF00E4D40A /* range.c in Sources */,
+				48911C2714FB8C4C00EEA5D0 /* penrose.c in Sources */,
+				48911C2B14FB8C7700EEA5D0 /* loopgen.c in Sources */,
+				48911C2D14FB8C9E00EEA5D0 /* tdq.c in Sources */,
+				48911C2F14FB8CAA00EEA5D0 /* pearl.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,7 +508,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -502,7 +522,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

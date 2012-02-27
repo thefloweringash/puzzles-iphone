@@ -1,7 +1,7 @@
 Quick Start
 ===========
 
-    svn co svn://svn.tartarus.org/sgt/puzzles@9023
+    svn co svn://svn.tartarus.org/sgt/puzzles@9419
     cd puzzles
     perl mkfiles.pl
     git clone git://github.com/thefloweringash/puzzles-iphone.git iphone
