@@ -11,7 +11,13 @@ static CGContextRef create_bitmap_context(int w, int h) {
     CGContextRef context = NULL;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 
-    context = CGBitmapContextCreate(NULL, w, h, 8, 0, colorSpace, kCGImageAlphaNoneSkipFirst);
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(w,h), YES, 0.0);
+    context = UIGraphicsGetCurrentContext();
+    CGContextRetain(context);
+    UIGraphicsEndImageContext();
+
+    CGContextTranslateCTM(context, 0, h);
+    CGContextScaleCTM(context, 1.0, -1.0);
 
     CGColorSpaceRelease(colorSpace);
     return context;
@@ -225,6 +231,8 @@ static void iphone_dr_blitter_save(void *handle, blitter *bl, int x, int y)
 
     CGImageRef image = CGBitmapContextCreateImage(view.backingContext);
     CGRect transformed = bl->rect;
+    const CGFloat uiscale = view.contentScaleFactor;
+    transformed = CGRectApplyAffineTransform(transformed, CGAffineTransformMakeScale(uiscale, uiscale));
     transformed.origin.y = CGImageGetHeight(image) - transformed.origin.y - transformed.size.height;
     bl->image = CGImageCreateWithImageInRect(image, transformed);
     CGImageRelease(image);
