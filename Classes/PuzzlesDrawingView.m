@@ -83,9 +83,10 @@ static void iphone_dr_draw_rect(void *handle, int x, int y, int w, int h, int co
     NSArray *colours = view.colours;
     CGContextRef c = view.backingContext;
 
-    CGContextSetAllowsAntialiasing(c, NO);
+    CGContextSetAllowsAntialiasing(c, YES);
     CGContextSetFillColorWithColor(c, [[colours objectAtIndex:colour] CGColor]);
     CGContextFillRect(c, CGRectMake(x, y, w, h));
+
 }
 
 static void iphone_dr_draw_line(void *handle, int x1, int y1, int x2, int y2,
@@ -94,12 +95,14 @@ static void iphone_dr_draw_line(void *handle, int x1, int y1, int x2, int y2,
     PuzzlesDrawingView *view = ((frontend*)handle)->drawingView;
     NSArray *colours = view.colours;
     CGContextRef c = view.backingContext;
+    CGContextSetLineCap(c, kCGLineCapSquare);
 
     CGContextSetAllowsAntialiasing(c, YES);
     CGContextSetStrokeColorWithColor(c, [[colours objectAtIndex:colour] CGColor]);
     CGContextBeginPath(c);
-    CGContextMoveToPoint(c, x1, y1);
-    CGContextAddLineToPoint(c, x2, y2);
+    CGContextMoveToPoint(c, x1 + 0.5f, y1 + 0.5f);
+    CGContextAddLineToPoint(c, x2 + 0.5f, y2 + 0.5f);
+
     CGContextStrokePath(c);
 }
 
@@ -111,23 +114,37 @@ static void iphone_dr_draw_polygon(void *handle, int *coords, int npoints,
     CGContextRef c = view.backingContext;
 
     CGContextSetAllowsAntialiasing(c, YES);
-    CGContextSetStrokeColorWithColor(c, [[colours objectAtIndex:outlinecolour] CGColor]);
+    CGContextSetLineCap(c, kCGLineCapSquare);
 
     CGContextBeginPath(c);
-    CGContextMoveToPoint(c, coords[0], coords[1]);
+    CGContextMoveToPoint(c, coords[0] + 0.5f, coords[1] + 0.5f);
     for (int p = 1; p < npoints; p++) {
         int x = coords[2*p];
         int y = coords[2*p+1];
-        CGContextAddLineToPoint(c, x, y);
+        CGContextAddLineToPoint(c, x + 0.5f, y + 0.5f);
     }
     CGContextClosePath(c);
-    if (fillcolour != -1) {
+
+    if (outlinecolour != -1)
+        CGContextSetStrokeColorWithColor(c, [[colours objectAtIndex:outlinecolour] CGColor]);
+    if (fillcolour != -1)
         CGContextSetFillColorWithColor(c, [[colours objectAtIndex:fillcolour] CGColor]);
-        CGContextDrawPath(c, kCGPathFillStroke);
+
+    CGPathDrawingMode drawingMode;
+
+    if (fillcolour != -1 && outlinecolour != -1) {
+        drawingMode = kCGPathFillStroke;
+    }
+    else if (fillcolour != -1) {
+        drawingMode = kCGPathFill;
+    }
+    else if (outlinecolour != -1) {
+        drawingMode = kCGPathStroke;
     }
     else {
-        CGContextStrokePath(c);
+        return;
     }
+    CGContextDrawPath(c, drawingMode);
 }
 
 static void iphone_dr_draw_circle(void *handle, int cx, int cy, int radius,
@@ -140,7 +157,7 @@ static void iphone_dr_draw_circle(void *handle, int cx, int cy, int radius,
     CGContextSetAllowsAntialiasing(c, YES);
     CGContextSetStrokeColorWithColor(c, [[colours objectAtIndex:outlinecolour] CGColor]);
 
-    CGContextAddEllipseInRect(c, CGRectMake(cx-radius+0.5, cy-radius+0.5, radius*2-1, radius*2-1));
+    CGContextAddEllipseInRect(c, CGRectMake(cx-radius+1, cy-radius+1, radius*2-1, radius*2-1));
 
     if (fillcolour != -1) {
         CGContextSetFillColorWithColor(c, [[colours objectAtIndex:fillcolour] CGColor]);
