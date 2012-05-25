@@ -193,6 +193,7 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    [popoverConfigurationMenu release];
     popoverConfigurationMenu = nil;
     if (buttonIndex == actionSheet.cancelButtonIndex) {
         return;
@@ -243,6 +244,12 @@
         gameParamsChanged = NO;
         [self new:self];
         [self.puzzleView layoutSubviews];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if (popoverConfigurationMenu) {
+        [popoverConfigurationMenu dismissWithClickedButtonIndex:popoverConfigurationMenu.cancelButtonIndex animated:YES];
     }
 }
 
