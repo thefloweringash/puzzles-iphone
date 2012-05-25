@@ -5,4 +5,8 @@ Quick Start
     cd puzzles
     perl mkfiles.pl
     git clone git://github.com/thefloweringash/puzzles-iphone.git iphone
+    mkdir -p iphone/Documentation
+    pushd iphone/Documentation
+        halibut --html ../../help-osx.but ../../puzzles.but
+    popd
     open iphone/Puzzles.xcodeproj

@@ -4,10 +4,19 @@
 #import "PuzzlesDrawingView.h"
 #import "PuzzlesConfigurationViewController.h"
 
+#import "HelpViewController.h"
+
 #include "puzzles.h"
 
 #pragma mark iPhone Front End
 
+@interface PuzzlesFrontEnd () <HelpViewControllerDelegate> {
+    BOOL _showingHelp;
+
+    IBOutlet UIView *_puzzleViewContainer;
+}
+
+@end
 
 @implementation PuzzlesFrontEnd
 
@@ -126,6 +135,7 @@
             [actions addObject:@"Solve"];
         }
         [actions addObject:@"Configure"];
+        [actions addObject:@"Help"];
         configurationActions = [actions retain];
     }
     return configurationActions;
@@ -232,9 +242,56 @@
             }
             [vc release];
         }
+        else if ([action isEqualToString:@"Help"]) {
+            if (_showingHelp) {
+                return;
+            }
+            _showingHelp = YES;
+
+            HelpViewController *vc = [[HelpViewController alloc] initWithHelpTopic:
+                                      [NSString stringWithCString:myGame->htmlhelp_topic encoding:NSASCIIStringEncoding]];
+            vc.delegate = self;
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+                // we don't have the screen realestate to do anything fancy on a phone
+                // just pop over a web view
+                [self.navigationController pushViewController:vc animated:YES];
+                [vc release];
+            }
+            else {
+                // split main content view in half
+                CGRect lhs, rhs;
+                CGRectDivide(_puzzleViewContainer.bounds, &rhs, &lhs, _puzzleViewContainer.bounds.size.width / 2, CGRectMaxXEdge);
+
+                vc.view.frame = CGRectOffset(rhs, rhs.size.width, 0);
+                [_puzzleViewContainer addSubview:vc.view];
+
+                [UIView animateWithDuration:0.5f animations:^{
+                    self.puzzleView.frame = lhs;
+                    vc.view.frame = rhs;
+                }];
+            }
+        }
     }
 }
 
+- (void)dismissHelpViewController:(HelpViewController *)helpViewController {
+    _showingHelp = NO;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [UIView animateWithDuration:0.5f
+                         animations:^{
+                             self.puzzleView.frame = _puzzleViewContainer.bounds;
+                             CGRect oldHelpFrame = helpViewController.view.frame;
+                             helpViewController.view.frame = CGRectOffset(oldHelpFrame, oldHelpFrame.size.width, 0);
+                         }
+                         completion:^(BOOL b) {
+                             [helpViewController.view removeFromSuperview];
+                         }];
+        [helpViewController release];
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
 #pragma mark -
 #pragma mark View Lifecycle

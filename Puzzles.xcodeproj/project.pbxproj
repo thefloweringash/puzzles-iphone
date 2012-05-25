@@ -14,6 +14,47 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		48536EE110DC910600D61497 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 48536EE010DC910600D61497 /* Icon.png */; };
+		487FC8E7156F95DE00BABCF3 /* blackbox.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8C0156F95DE00BABCF3 /* blackbox.html */; };
+		487FC8E8156F95DE00BABCF3 /* bridges.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8C1156F95DE00BABCF3 /* bridges.html */; };
+		487FC8E9156F95DE00BABCF3 /* common.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8C2156F95DE00BABCF3 /* common.html */; };
+		487FC8EA156F95DE00BABCF3 /* cube.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8C3156F95DE00BABCF3 /* cube.html */; };
+		487FC8EB156F95DE00BABCF3 /* docindex.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8C4156F95DE00BABCF3 /* docindex.html */; };
+		487FC8EC156F95DE00BABCF3 /* dominosa.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8C5156F95DE00BABCF3 /* dominosa.html */; };
+		487FC8ED156F95DE00BABCF3 /* fifteen.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8C6156F95DE00BABCF3 /* fifteen.html */; };
+		487FC8EE156F95DE00BABCF3 /* filling.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8C7156F95DE00BABCF3 /* filling.html */; };
+		487FC8EF156F95DE00BABCF3 /* flip.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8C8156F95DE00BABCF3 /* flip.html */; };
+		487FC8F0156F95DE00BABCF3 /* galaxies.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8C9156F95DE00BABCF3 /* galaxies.html */; };
+		487FC8F1156F95DE00BABCF3 /* guess.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8CA156F95DE00BABCF3 /* guess.html */; };
+		487FC8F2156F95DE00BABCF3 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8CB156F95DE00BABCF3 /* index.html */; };
+		487FC8F3156F95DE00BABCF3 /* inertia.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8CC156F95DE00BABCF3 /* inertia.html */; };
+		487FC8F4156F95DE00BABCF3 /* intro.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8CD156F95DE00BABCF3 /* intro.html */; };
+		487FC8F5156F95DE00BABCF3 /* keen.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8CE156F95DE00BABCF3 /* keen.html */; };
+		487FC8F6156F95DE00BABCF3 /* licence.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8CF156F95DE00BABCF3 /* licence.html */; };
+		487FC8F7156F95DE00BABCF3 /* lightup.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8D0156F95DE00BABCF3 /* lightup.html */; };
+		487FC8F8156F95DE00BABCF3 /* loopy.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8D1156F95DE00BABCF3 /* loopy.html */; };
+		487FC8F9156F95DE00BABCF3 /* magnets.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8D2156F95DE00BABCF3 /* magnets.html */; };
+		487FC8FA156F95DE00BABCF3 /* map.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8D3156F95DE00BABCF3 /* map.html */; };
+		487FC8FB156F95DE00BABCF3 /* mines.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8D4156F95DE00BABCF3 /* mines.html */; };
+		487FC8FC156F95DE00BABCF3 /* net.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8D5156F95DE00BABCF3 /* net.html */; };
+		487FC8FD156F95DE00BABCF3 /* netslide.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8D6156F95DE00BABCF3 /* netslide.html */; };
+		487FC8FE156F95DE00BABCF3 /* pattern.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8D7156F95DE00BABCF3 /* pattern.html */; };
+		487FC8FF156F95DE00BABCF3 /* pearl.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8D8156F95DE00BABCF3 /* pearl.html */; };
+		487FC900156F95DE00BABCF3 /* pegs.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8D9156F95DE00BABCF3 /* pegs.html */; };
+		487FC901156F95DE00BABCF3 /* range.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8DA156F95DE00BABCF3 /* range.html */; };
+		487FC902156F95DE00BABCF3 /* rectangles.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8DB156F95DE00BABCF3 /* rectangles.html */; };
+		487FC903156F95DE00BABCF3 /* samegame.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8DC156F95DE00BABCF3 /* samegame.html */; };
+		487FC904156F95DE00BABCF3 /* signpost.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8DD156F95DE00BABCF3 /* signpost.html */; };
+		487FC905156F95DE00BABCF3 /* singles.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8DE156F95DE00BABCF3 /* singles.html */; };
+		487FC906156F95DE00BABCF3 /* sixteen.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8DF156F95DE00BABCF3 /* sixteen.html */; };
+		487FC907156F95DE00BABCF3 /* slant.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8E0156F95DE00BABCF3 /* slant.html */; };
+		487FC908156F95DE00BABCF3 /* solo.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8E1156F95DE00BABCF3 /* solo.html */; };
+		487FC909156F95DE00BABCF3 /* tents.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8E2156F95DE00BABCF3 /* tents.html */; };
+		487FC90A156F95DE00BABCF3 /* towers.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8E3156F95DE00BABCF3 /* towers.html */; };
+		487FC90B156F95DE00BABCF3 /* twiddle.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8E4156F95DE00BABCF3 /* twiddle.html */; };
+		487FC90C156F95DE00BABCF3 /* unequal.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8E5156F95DE00BABCF3 /* unequal.html */; };
+		487FC90D156F95DE00BABCF3 /* untangle.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8E6156F95DE00BABCF3 /* untangle.html */; };
+		487FC911156FB3EE00BABCF3 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 487FC90F156FB3EE00BABCF3 /* HelpViewController.m */; };
+		487FC912156FB3EE00BABCF3 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487FC910156FB3EE00BABCF3 /* HelpViewController.xib */; };
 		4888AD9E10ED9E120059E5C4 /* PuzzlesFrontEnd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4888AD9D10ED9E120059E5C4 /* PuzzlesFrontEnd.xib */; };
 		4888AE0910EDA6F60059E5C4 /* PuzzlesConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4888AE0710EDA6F60059E5C4 /* PuzzlesConfigurationViewController.m */; };
 		4888AE0A10EDA6F60059E5C4 /* PuzzlesConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4888AE0810EDA6F60059E5C4 /* PuzzlesConfigurationViewController.xib */; };
@@ -89,6 +130,49 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Puzzles_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Puzzles_Prefix.pch; sourceTree = "<group>"; };
 		48536EE010DC910600D61497 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		487FC8C0156F95DE00BABCF3 /* blackbox.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = blackbox.html; sourceTree = "<group>"; };
+		487FC8C1156F95DE00BABCF3 /* bridges.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = bridges.html; sourceTree = "<group>"; };
+		487FC8C2156F95DE00BABCF3 /* common.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = common.html; sourceTree = "<group>"; };
+		487FC8C3156F95DE00BABCF3 /* cube.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = cube.html; sourceTree = "<group>"; };
+		487FC8C4156F95DE00BABCF3 /* docindex.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = docindex.html; sourceTree = "<group>"; };
+		487FC8C5156F95DE00BABCF3 /* dominosa.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = dominosa.html; sourceTree = "<group>"; };
+		487FC8C6156F95DE00BABCF3 /* fifteen.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = fifteen.html; sourceTree = "<group>"; };
+		487FC8C7156F95DE00BABCF3 /* filling.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = filling.html; sourceTree = "<group>"; };
+		487FC8C8156F95DE00BABCF3 /* flip.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = flip.html; sourceTree = "<group>"; };
+		487FC8C9156F95DE00BABCF3 /* galaxies.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = galaxies.html; sourceTree = "<group>"; };
+		487FC8CA156F95DE00BABCF3 /* guess.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = guess.html; sourceTree = "<group>"; };
+		487FC8CB156F95DE00BABCF3 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = index.html; sourceTree = "<group>"; };
+		487FC8CC156F95DE00BABCF3 /* inertia.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = inertia.html; sourceTree = "<group>"; };
+		487FC8CD156F95DE00BABCF3 /* intro.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = intro.html; sourceTree = "<group>"; };
+		487FC8CE156F95DE00BABCF3 /* keen.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = keen.html; sourceTree = "<group>"; };
+		487FC8CF156F95DE00BABCF3 /* licence.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = licence.html; sourceTree = "<group>"; };
+		487FC8D0156F95DE00BABCF3 /* lightup.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = lightup.html; sourceTree = "<group>"; };
+		487FC8D1156F95DE00BABCF3 /* loopy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = loopy.html; sourceTree = "<group>"; };
+		487FC8D2156F95DE00BABCF3 /* magnets.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = magnets.html; sourceTree = "<group>"; };
+		487FC8D3156F95DE00BABCF3 /* map.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = map.html; sourceTree = "<group>"; };
+		487FC8D4156F95DE00BABCF3 /* mines.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = mines.html; sourceTree = "<group>"; };
+		487FC8D5156F95DE00BABCF3 /* net.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = net.html; sourceTree = "<group>"; };
+		487FC8D6156F95DE00BABCF3 /* netslide.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = netslide.html; sourceTree = "<group>"; };
+		487FC8D7156F95DE00BABCF3 /* pattern.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = pattern.html; sourceTree = "<group>"; };
+		487FC8D8156F95DE00BABCF3 /* pearl.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = pearl.html; sourceTree = "<group>"; };
+		487FC8D9156F95DE00BABCF3 /* pegs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = pegs.html; sourceTree = "<group>"; };
+		487FC8DA156F95DE00BABCF3 /* range.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = range.html; sourceTree = "<group>"; };
+		487FC8DB156F95DE00BABCF3 /* rectangles.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = rectangles.html; sourceTree = "<group>"; };
+		487FC8DC156F95DE00BABCF3 /* samegame.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = samegame.html; sourceTree = "<group>"; };
+		487FC8DD156F95DE00BABCF3 /* signpost.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = signpost.html; sourceTree = "<group>"; };
+		487FC8DE156F95DE00BABCF3 /* singles.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = singles.html; sourceTree = "<group>"; };
+		487FC8DF156F95DE00BABCF3 /* sixteen.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = sixteen.html; sourceTree = "<group>"; };
+		487FC8E0156F95DE00BABCF3 /* slant.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = slant.html; sourceTree = "<group>"; };
+		487FC8E1156F95DE00BABCF3 /* solo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = solo.html; sourceTree = "<group>"; };
+		487FC8E2156F95DE00BABCF3 /* tents.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = tents.html; sourceTree = "<group>"; };
+		487FC8E3156F95DE00BABCF3 /* towers.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = towers.html; sourceTree = "<group>"; };
+		487FC8E4156F95DE00BABCF3 /* twiddle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = twiddle.html; sourceTree = "<group>"; };
+		487FC8E5156F95DE00BABCF3 /* unequal.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = unequal.html; sourceTree = "<group>"; };
+		487FC8E6156F95DE00BABCF3 /* untangle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = untangle.html; sourceTree = "<group>"; };
+		487FC90E156FB3EE00BABCF3 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		487FC90F156FB3EE00BABCF3 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		487FC910156FB3EE00BABCF3 /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HelpViewController.xib; path = Classes/HelpViewController.xib; sourceTree = "<group>"; };
+		487FC913156FB85300BABCF3 /* HelpViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpViewControllerDelegate.h; sourceTree = "<group>"; };
 		4888AD9D10ED9E120059E5C4 /* PuzzlesFrontEnd.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PuzzlesFrontEnd.xib; sourceTree = "<group>"; };
 		4888AE0610EDA6F60059E5C4 /* PuzzlesConfigurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzlesConfigurationViewController.h; sourceTree = "<group>"; };
 		4888AE0710EDA6F60059E5C4 /* PuzzlesConfigurationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzlesConfigurationViewController.m; sourceTree = "<group>"; };
@@ -199,6 +283,9 @@
 				4888AE0710EDA6F60059E5C4 /* PuzzlesConfigurationViewController.m */,
 				4888B1BA10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.h */,
 				4888B1BB10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.m */,
+				487FC90E156FB3EE00BABCF3 /* HelpViewController.h */,
+				487FC90F156FB3EE00BABCF3 /* HelpViewController.m */,
+				487FC913156FB85300BABCF3 /* HelpViewControllerDelegate.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -237,12 +324,14 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				487FC8BF156F95DE00BABCF3 /* Documentation */,
 				48536EE010DC910600D61497 /* Icon.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				4888AD9D10ED9E120059E5C4 /* PuzzlesFrontEnd.xib */,
 				48B6716810D776D300B244DF /* PuzzlesListViewController.xib */,
 				4888AE0810EDA6F60059E5C4 /* PuzzlesConfigurationViewController.xib */,
 				4888B1BC10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.xib */,
+				487FC910156FB3EE00BABCF3 /* HelpViewController.xib */,
 				8D1107310486CEB800E47090 /* Puzzles-Info.plist */,
 			);
 			name = Resources;
@@ -256,6 +345,52 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		487FC8BF156F95DE00BABCF3 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				487FC8C0156F95DE00BABCF3 /* blackbox.html */,
+				487FC8C1156F95DE00BABCF3 /* bridges.html */,
+				487FC8C2156F95DE00BABCF3 /* common.html */,
+				487FC8C3156F95DE00BABCF3 /* cube.html */,
+				487FC8C4156F95DE00BABCF3 /* docindex.html */,
+				487FC8C5156F95DE00BABCF3 /* dominosa.html */,
+				487FC8C6156F95DE00BABCF3 /* fifteen.html */,
+				487FC8C7156F95DE00BABCF3 /* filling.html */,
+				487FC8C8156F95DE00BABCF3 /* flip.html */,
+				487FC8C9156F95DE00BABCF3 /* galaxies.html */,
+				487FC8CA156F95DE00BABCF3 /* guess.html */,
+				487FC8CB156F95DE00BABCF3 /* index.html */,
+				487FC8CC156F95DE00BABCF3 /* inertia.html */,
+				487FC8CD156F95DE00BABCF3 /* intro.html */,
+				487FC8CE156F95DE00BABCF3 /* keen.html */,
+				487FC8CF156F95DE00BABCF3 /* licence.html */,
+				487FC8D0156F95DE00BABCF3 /* lightup.html */,
+				487FC8D1156F95DE00BABCF3 /* loopy.html */,
+				487FC8D2156F95DE00BABCF3 /* magnets.html */,
+				487FC8D3156F95DE00BABCF3 /* map.html */,
+				487FC8D4156F95DE00BABCF3 /* mines.html */,
+				487FC8D5156F95DE00BABCF3 /* net.html */,
+				487FC8D6156F95DE00BABCF3 /* netslide.html */,
+				487FC8D7156F95DE00BABCF3 /* pattern.html */,
+				487FC8D8156F95DE00BABCF3 /* pearl.html */,
+				487FC8D9156F95DE00BABCF3 /* pegs.html */,
+				487FC8DA156F95DE00BABCF3 /* range.html */,
+				487FC8DB156F95DE00BABCF3 /* rectangles.html */,
+				487FC8DC156F95DE00BABCF3 /* samegame.html */,
+				487FC8DD156F95DE00BABCF3 /* signpost.html */,
+				487FC8DE156F95DE00BABCF3 /* singles.html */,
+				487FC8DF156F95DE00BABCF3 /* sixteen.html */,
+				487FC8E0156F95DE00BABCF3 /* slant.html */,
+				487FC8E1156F95DE00BABCF3 /* solo.html */,
+				487FC8E2156F95DE00BABCF3 /* tents.html */,
+				487FC8E3156F95DE00BABCF3 /* towers.html */,
+				487FC8E4156F95DE00BABCF3 /* twiddle.html */,
+				487FC8E5156F95DE00BABCF3 /* unequal.html */,
+				487FC8E6156F95DE00BABCF3 /* untangle.html */,
+			);
+			path = Documentation;
 			sourceTree = "<group>";
 		};
 		48B670B710D76F3900B244DF /* Puzzles */ = {
@@ -392,6 +527,46 @@
 				4888AD9E10ED9E120059E5C4 /* PuzzlesFrontEnd.xib in Resources */,
 				4888AE0A10EDA6F60059E5C4 /* PuzzlesConfigurationViewController.xib in Resources */,
 				4888B1BE10EDE7650059E5C4 /* PuzzlesConfigurationChoicesViewController.xib in Resources */,
+				487FC8E7156F95DE00BABCF3 /* blackbox.html in Resources */,
+				487FC8E8156F95DE00BABCF3 /* bridges.html in Resources */,
+				487FC8E9156F95DE00BABCF3 /* common.html in Resources */,
+				487FC8EA156F95DE00BABCF3 /* cube.html in Resources */,
+				487FC8EB156F95DE00BABCF3 /* docindex.html in Resources */,
+				487FC8EC156F95DE00BABCF3 /* dominosa.html in Resources */,
+				487FC8ED156F95DE00BABCF3 /* fifteen.html in Resources */,
+				487FC8EE156F95DE00BABCF3 /* filling.html in Resources */,
+				487FC8EF156F95DE00BABCF3 /* flip.html in Resources */,
+				487FC8F0156F95DE00BABCF3 /* galaxies.html in Resources */,
+				487FC8F1156F95DE00BABCF3 /* guess.html in Resources */,
+				487FC8F2156F95DE00BABCF3 /* index.html in Resources */,
+				487FC8F3156F95DE00BABCF3 /* inertia.html in Resources */,
+				487FC8F4156F95DE00BABCF3 /* intro.html in Resources */,
+				487FC8F5156F95DE00BABCF3 /* keen.html in Resources */,
+				487FC8F6156F95DE00BABCF3 /* licence.html in Resources */,
+				487FC8F7156F95DE00BABCF3 /* lightup.html in Resources */,
+				487FC8F8156F95DE00BABCF3 /* loopy.html in Resources */,
+				487FC8F9156F95DE00BABCF3 /* magnets.html in Resources */,
+				487FC8FA156F95DE00BABCF3 /* map.html in Resources */,
+				487FC8FB156F95DE00BABCF3 /* mines.html in Resources */,
+				487FC8FC156F95DE00BABCF3 /* net.html in Resources */,
+				487FC8FD156F95DE00BABCF3 /* netslide.html in Resources */,
+				487FC8FE156F95DE00BABCF3 /* pattern.html in Resources */,
+				487FC8FF156F95DE00BABCF3 /* pearl.html in Resources */,
+				487FC900156F95DE00BABCF3 /* pegs.html in Resources */,
+				487FC901156F95DE00BABCF3 /* range.html in Resources */,
+				487FC902156F95DE00BABCF3 /* rectangles.html in Resources */,
+				487FC903156F95DE00BABCF3 /* samegame.html in Resources */,
+				487FC904156F95DE00BABCF3 /* signpost.html in Resources */,
+				487FC905156F95DE00BABCF3 /* singles.html in Resources */,
+				487FC906156F95DE00BABCF3 /* sixteen.html in Resources */,
+				487FC907156F95DE00BABCF3 /* slant.html in Resources */,
+				487FC908156F95DE00BABCF3 /* solo.html in Resources */,
+				487FC909156F95DE00BABCF3 /* tents.html in Resources */,
+				487FC90A156F95DE00BABCF3 /* towers.html in Resources */,
+				487FC90B156F95DE00BABCF3 /* twiddle.html in Resources */,
+				487FC90C156F95DE00BABCF3 /* unequal.html in Resources */,
+				487FC90D156F95DE00BABCF3 /* untangle.html in Resources */,
+				487FC912156FB3EE00BABCF3 /* HelpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +637,7 @@
 				48911C2B14FB8C7700EEA5D0 /* loopgen.c in Sources */,
 				48911C2D14FB8C9E00EEA5D0 /* tdq.c in Sources */,
 				48911C2F14FB8CAA00EEA5D0 /* pearl.c in Sources */,
+				487FC911156FB3EE00BABCF3 /* HelpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

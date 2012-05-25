@@ -287,6 +287,13 @@ static void iphone_dr_line_dotted(void *handle, int dotted)
 @synthesize clipped;
 @synthesize midend = myMidend;
 
+- (id)init {
+    if (self = [super init]) {
+        self.contentMode = UIViewContentModeRedraw;
+    }
+    return self;
+}
+
 - (void)setMidend:(midend *)aMidend {
     myMidend = aMidend;
 }
