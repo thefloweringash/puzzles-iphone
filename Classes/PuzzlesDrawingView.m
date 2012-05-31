@@ -236,7 +236,8 @@ static void iphone_dr_status_bar(void *handle, char *text)
 }
 
 struct blitter {
-    CGRect rect;
+    CGRect rect; // specified by puzzle client code
+    CGRect subrect; // actually captured pixels in rect-space
     CGImageRef image;
 };
 
@@ -266,21 +267,45 @@ static void iphone_dr_blitter_save(void *handle, blitter *bl, int x, int y)
     bl->rect.origin = CGPointMake(x, y);
 
     CGImageRef image = CGBitmapContextCreateImage(view.backingContext);
-    CGRect transformed = bl->rect;
     const CGFloat uiscale = view.contentScaleFactor;
-    transformed = CGRectApplyAffineTransform(transformed, CGAffineTransformMakeScale(uiscale, uiscale));
+    const CGRect blRect = bl->rect;
+
+    CGRect transformed = CGRectApplyAffineTransform(blRect, CGAffineTransformMakeScale(uiscale, uiscale));
     transformed.origin.y = CGImageGetHeight(image) - transformed.origin.y - transformed.size.height;
     bl->image = CGImageCreateWithImageInRect(image, transformed);
+
+    CGRect subrect = { CGPointZero, blRect.size };
+    CGRect puzzleBounds = [view puzzleBounds];
+    if (!CGRectContainsRect(puzzleBounds, blRect)) {
+        subrect = CGRectIntersection(puzzleBounds, blRect);
+
+        // we know we have been clipped, just figure out which edge was clipped
+        // and adjust the offset appropriately
+
+        if (subrect.origin.x == 0) {
+            subrect.origin.x = blRect.size.width - subrect.size.width;
+        }
+        else {
+            subrect.origin.x = 0;
+        }
+        if (subrect.origin.y == 0) {
+            subrect.origin.y = blRect.size.height - subrect.size.height;
+        }
+        else {
+            subrect.origin.y = 0;
+        }
+    }
+    bl->subrect = subrect;
     CGImageRelease(image);
 }
 static void iphone_dr_blitter_load(void *handle, blitter *bl, int x, int y)
 {
     PuzzlesDrawingView *view = drawingView_from_handle(handle);
     CGContextRef c = view.backingContext;
-    CGRect targetRect = bl->rect;
+    CGRect targetRect = CGRectOffset(bl->subrect, bl->rect.origin.x, bl->rect.origin.y);
     if (x != BLITTER_FROMSAVED || y != BLITTER_FROMSAVED) {
-        targetRect.origin.x = x;
-        targetRect.origin.y = y;
+        targetRect.origin.x = x + bl->subrect.origin.x;
+        targetRect.origin.y = y + bl->subrect.origin.y;
     }
     CGContextDrawImage(c, targetRect, bl->image);
 }
@@ -370,6 +395,11 @@ static void iphone_dr_line_dotted(void *handle, int dotted)
         [self setNeedsDisplay];
         midend_redraw(myMidend);
     }
+}
+
+- (CGRect) puzzleBounds {
+    CGRect r = { CGPointZero, puzzleSubframe.size };
+    return r;
 }
 
 - (void)dealloc {

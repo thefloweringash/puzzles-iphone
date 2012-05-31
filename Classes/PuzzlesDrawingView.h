@@ -18,6 +18,8 @@
 
 - (CGPoint)locationInViewToGamePoint:(CGPoint)p;
 
+- (CGRect)puzzleBounds;
+
 + (const drawing_api*)drawingAPI;
 
 @end
