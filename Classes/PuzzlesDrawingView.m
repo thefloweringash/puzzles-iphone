@@ -150,6 +150,17 @@ static void iphone_dr_draw_polygon(void *handle, int *coords, int npoints,
 static void iphone_dr_draw_circle(void *handle, int cx, int cy, int radius,
                                   int fillcolour, int outlinecolour)
 {
+    // The specification gives:
+
+    // cx and cy give the coordinates of the centre of the
+    // circle. radius gives its radius. The total horizontal pixel
+    // extent of the circle is from cx-radius+1 to cx+radius-1
+    // inclusive, and the vertical extent similarly around cy.
+
+    // We need a rectangle of width (cx+radius-1)-(cx-radius+1) + 1
+    // = cx+radius-1-cx-radius-1+1
+    // = 2*radius - 1
+
     PuzzlesDrawingView *view = ((frontend*)handle)->drawingView;
     NSArray *colours = view.colours;
     CGContextRef c = view.backingContext;
@@ -157,7 +168,15 @@ static void iphone_dr_draw_circle(void *handle, int cx, int cy, int radius,
     CGContextSetAllowsAntialiasing(c, YES);
     CGContextSetStrokeColorWithColor(c, [[colours objectAtIndex:outlinecolour] CGColor]);
 
-    CGContextAddEllipseInRect(c, CGRectMake(cx-radius+1, cy-radius+1, radius*2-1, radius*2-1));
+    // Hypothesis: The circle is contained within a bounding box specified by:
+    //   CGRectMake(cx-radius+1, cy-radius+1, radius*2-1, radius*2-1)
+    // however the stroke isn't.
+    // => Compensate for the stroke width by bringing the circle in a little (strokewidth/2)
+    const float circleStrokeCompensation = 0.5f;
+    CGContextAddEllipseInRect(c, CGRectMake(cx-radius+1 + circleStrokeCompensation,
+                                            cy-radius+1 + circleStrokeCompensation,
+                                            radius*2-1 - circleStrokeCompensation * 2,
+                                            radius*2-1 - circleStrokeCompensation * 2));
 
     if (fillcolour != -1) {
         CGContextSetFillColorWithColor(c, [[colours objectAtIndex:fillcolour] CGColor]);
