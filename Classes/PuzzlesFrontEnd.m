@@ -348,8 +348,8 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
 
     if (!midend_wants_statusbar(myMidend)) {
         CGRect labelFrame = self.statusLabel.frame;
-        CGRect puzzleFrame = self.puzzleView.frame;
-        self.puzzleView.frame = CGRectUnion(puzzleFrame, labelFrame);
+        CGRect puzzleFrame = _puzzleViewContainer.frame;
+       _puzzleViewContainer.frame = CGRectUnion(puzzleFrame, labelFrame);
     }
 
     [self.puzzleView layoutSubviews];
