@@ -8,13 +8,28 @@
 
 #include "puzzles.h"
 
+static void midend_serialise_block(struct midend *me, void (^write)(void *data, int size));
+static char *midend_deserialise_block(struct midend *me, int (^read)(void *data, int size));
+
+
 #pragma mark iPhone Front End
 
 @interface PuzzlesFrontEnd () <HelpViewControllerDelegate> {
     BOOL _showingHelp;
 
     IBOutlet UIView *_puzzleViewContainer;
+    id _resignActiveObserver;
 }
+
+- (void)listenForResignActive;
+- (void)stopListeningForResignActive;
+
+- (NSURL*)applicationDataDirectory;
+- (NSURL*)pathForSaveGame;
+- (NSURL*)ensureSaveDirectory;
+
+- (void)saveGame;
+- (void)loadGame;
 
 @end
 
@@ -43,6 +58,9 @@
                               [PuzzlesDrawingView drawingAPI],
                               &frontend_wrapper);
         midend_new_game(myMidend);
+
+        [self loadGame];
+        [self listenForResignActive];
     }
     return self;
 }
@@ -302,12 +320,15 @@
         [self new:self];
         [self.puzzleView layoutSubviews];
     }
+    [self listenForResignActive];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     if (popoverConfigurationMenu) {
         [popoverConfigurationMenu dismissWithClickedButtonIndex:popoverConfigurationMenu.cancelButtonIndex animated:YES];
     }
+    [self stopListeningForResignActive];
+    [self saveGame];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -362,10 +383,143 @@
 }
 
 
+#pragma mark -
+#pragma mark Game persistence
+
+- (void)listenForResignActive {
+    if (!_resignActiveObserver) {
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        _resignActiveObserver = [[nc addObserverForName:UIApplicationWillResignActiveNotification
+                                                 object:[UIApplication sharedApplication]
+                                                  queue:NSOperationQueuePriorityNormal
+                                             usingBlock:^(NSNotification *note) {
+                                                 [self saveGame];
+                                             }] retain];
+    }
+}
+
+- (void)stopListeningForResignActive {
+    if (_resignActiveObserver) {
+        [[NSNotificationCenter defaultCenter] removeObserver:_resignActiveObserver];
+        [_resignActiveObserver release];
+        _resignActiveObserver = nil;
+    }
+}
+
+- (NSURL*)applicationDataDirectory {
+    NSFileManager* sharedFM = [NSFileManager defaultManager];
+    NSArray* possibleURLs = [sharedFM URLsForDirectory:NSApplicationSupportDirectory
+                                             inDomains:NSUserDomainMask];
+    NSURL* appSupportDir = nil;
+    NSURL* appDirectory = nil;
+
+    if ([possibleURLs count] >= 1) {
+        // Use the first directory (if multiple are returned)
+        appSupportDir = [possibleURLs objectAtIndex:0];
+    }
+
+    // If a valid app support directory exists, add the
+    // app's bundle ID to it to specify the final directory.
+    if (appSupportDir) {
+        NSString* appBundleID = [[NSBundle mainBundle] bundleIdentifier];
+        appDirectory = [appSupportDir URLByAppendingPathComponent:appBundleID];
+    }
+
+    return appDirectory;
+}
+
+- (NSURL*)ensureSaveDirectory {
+    NSURL *dir = [self applicationDataDirectory];
+
+    BOOL isDir;
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if ([fm fileExistsAtPath:[dir path] isDirectory:&isDir]) {
+        if (!isDir) {
+            NSLog(@"Save game directory exists but is not directory");
+            return nil;
+        }
+    }
+    else {
+        NSError *err;
+        if ([fm createDirectoryAtURL:dir withIntermediateDirectories:YES attributes:nil error:&err] == NO) {
+            NSLog(@"Failed creating save game directory: %@", err);
+            return nil;
+        }
+    }
+
+    return dir;
+}
+
+- (NSURL*)pathForSaveGame {
+    return [[self applicationDataDirectory] URLByAppendingPathComponent:[NSString stringWithCString:myGame->name encoding:NSASCIIStringEncoding]];
+}
+
+- (void)saveGame {
+    NSMutableData *serialized = [[NSMutableData alloc] init];
+    midend_serialise_block(myMidend, ^(void *data, int size){
+        [serialized appendBytes:data length:size];
+    });
+
+    if (![self ensureSaveDirectory]) {
+        NSLog(@"No save directory available, aborting save");
+        return;
+    }
+
+    NSFileManager *fm = [NSFileManager defaultManager];
+    BOOL saveOK = [fm createFileAtPath:[[self pathForSaveGame] path]
+                              contents:serialized
+                            attributes:nil];
+    if (!saveOK) {
+        NSLog(@"Save failed");
+    }
+    [serialized release];
+}
+
+- (void)loadGame {
+    NSFileManager *fm = [NSFileManager defaultManager];
+
+    NSURL *savePath = [self pathForSaveGame];
+    if (![fm fileExistsAtPath:[savePath path]]) {
+        return;
+    }
+
+    NSData *serialized = [fm contentsAtPath:[savePath path]];
+    __block int offset = 0;
+    char *result = midend_deserialise_block(myMidend, ^int (void *data, int size) {
+        int readLen = offset + size > [serialized length] ? [serialized length] - offset : size;
+        [serialized getBytes:data range:NSMakeRange(offset, readLen)];
+        offset += readLen;
+        return readLen;
+    });
+
+    // result is error message or NULL
+    if (result) {
+        NSLog(@"Couldn't load game: %s", result);
+    }
+}
+
 @end
 
 #pragma mark -
 #pragma mark C Stubs
+
+static void midend_serialise_block_trampoline(void *ctx, void *data, int size) {
+    void (^write)(void *, int) = ctx;
+    write(data, size);
+}
+
+static void midend_serialise_block(struct midend *me, void (^write)(void *data, int size)) {
+    midend_serialise(me, midend_serialise_block_trampoline, write);
+}
+
+static int midend_deserialise_block_trampoline(void *ctx, void *data, int size) {
+    int (^read)(void *, int) = ctx;
+    return read(data, size);
+}
+
+static char *midend_deserialise_block(struct midend *me, int (^read)(void *data, int size)) {
+    return midend_deserialise(me, midend_deserialise_block_trampoline, read);
+}
 
 void frontend_default_colour(frontend *fe, float *output) {
     [fe->object defaultColour:output];
