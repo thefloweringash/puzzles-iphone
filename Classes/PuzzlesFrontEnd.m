@@ -110,7 +110,9 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
 }
 
 - (void)defaultColour:(float*)output {
-    output[0] = output[1] = output[2] = 0.8f;
+    output[0] = 0.9608;
+    output[1] = 0.9608;
+    output[2] = 0.8627;
 }
 
 - (void)activateTimer
@@ -354,6 +356,10 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
         CGRect puzzleFrame = _puzzleViewContainer.frame;
        _puzzleViewContainer.frame = CGRectUnion(puzzleFrame, labelFrame);
     }
+
+    CGFloat defaultColor[3];
+    [self defaultColour:&defaultColor[0]];
+    _puzzleViewContainer.backgroundColor = [UIColor colorWithRed:defaultColor[0] green:defaultColor[1] blue:defaultColor[2] alpha:1.0f];
 
     [self.puzzleView layoutSubviews];
 }
