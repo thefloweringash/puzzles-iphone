@@ -19,6 +19,7 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
 
     IBOutlet UIView *_puzzleViewContainer;
     id _resignActiveObserver;
+    HelpViewController *_helpViewController;
 }
 
 - (void)listenForResignActive;
@@ -283,10 +284,11 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
                 vc.view.frame = CGRectOffset(rhs, rhs.size.width, 0);
                 [_puzzleViewContainer addSubview:vc.view];
 
-                [UIView animateWithDuration:0.5f animations:^{
+                [UIView animateWithDuration:0.3f animations:^{
                     self.puzzleView.frame = lhs;
                     vc.view.frame = rhs;
                 }];
+                _helpViewController = vc;
             }
         }
     }
@@ -303,8 +305,9 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
                          }
                          completion:^(BOOL b) {
                              [helpViewController.view removeFromSuperview];
+                             [_helpViewController release];
+                             _helpViewController = nil;
                          }];
-        [helpViewController release];
     }
     else {
         [self.navigationController popViewControllerAnimated:YES];
@@ -356,6 +359,9 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
 }
 
 - (void)viewDidUnload {
+    [_helpViewController.view removeFromSuperview];
+    [_helpViewController release];
+
     self.statusLabel = nil;
     self.puzzleView = nil;
 }
