@@ -324,6 +324,25 @@ static void iphone_dr_line_dotted(void *handle, int dotted)
     NSLog(@"UNIMPLEMENTED iphone_dr_line_dotted");
 }
 
+static void iphone_dr_draw_thick_line(void *handle, float thickness,
+                                      float x1, float y1, float x2, float y2,
+                                      int colour)
+{
+    PuzzlesDrawingView *view = ((frontend*)handle)->drawingView;
+    NSArray *colours = view.colours;
+    CGContextRef c = view.backingContext;
+    CGContextSetLineCap(c, kCGLineCapSquare);
+
+    CGContextSetAllowsAntialiasing(c, YES);
+    CGContextSetStrokeColorWithColor(c, [[colours objectAtIndex:colour] CGColor]);
+    CGContextSetLineWidth(c, thickness);
+    CGContextBeginPath(c);
+    CGContextMoveToPoint(c, x1, y1);
+    CGContextAddLineToPoint(c, x2, y2);
+
+    CGContextStrokePath(c);
+}
+
 #pragma mark -
 @implementation PuzzlesDrawingView
 
@@ -436,6 +455,8 @@ const static struct drawing_api kPuzzlesDrawingView_drawing_api = {
     NULL, // end_doc
     iphone_dr_line_width,
     iphone_dr_line_dotted,
+    NULL, // text_fallback
+    iphone_dr_draw_thick_line,
 };
 
 + (const drawing_api*)drawingAPI {
