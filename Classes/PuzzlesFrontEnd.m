@@ -335,6 +335,7 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
         CGRect labelFrame = self.statusLabel.frame;
         CGRect puzzleFrame = _puzzleViewContainer.frame;
        _puzzleViewContainer.frame = CGRectUnion(puzzleFrame, labelFrame);
+        self.statusLabel.hidden = YES;
     }
 
     CGFloat defaultColor[3];
