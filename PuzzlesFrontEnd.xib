@@ -125,7 +125,7 @@
 					</object>
 					<object class="IBUIScrollView" id="276323411">
 						<reference key="NSNextResponder" ref="411377058"/>
-						<int key="NSvFlags">274</int>
+						<int key="NSvFlags">278</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIView" id="213263734">
@@ -444,6 +444,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>hideConfigureMenu:</string>
 							<string>new:</string>
 							<string>redo:</string>
 							<string>restart:</string>
@@ -452,6 +453,7 @@
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -463,6 +465,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>hideConfigureMenu:</string>
 							<string>new:</string>
 							<string>redo:</string>
 							<string>restart:</string>
@@ -471,6 +474,10 @@
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">hideConfigureMenu:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">new:</string>
 								<string key="candidateClassName">id</string>
