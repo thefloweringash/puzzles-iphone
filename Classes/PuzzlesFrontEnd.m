@@ -14,9 +14,7 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
 
 #pragma mark iPhone Front End
 
-@interface PuzzlesFrontEnd () <HelpViewControllerDelegate> {
-    BOOL _showingHelp;
-
+@interface PuzzlesFrontEnd () <HelpViewControllerDelegate,UIScrollViewDelegate> {
     IBOutlet UIView *_puzzleViewContainer;
     id _resignActiveObserver;
     HelpViewController *_helpViewController;
@@ -66,6 +64,16 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
     return self;
 }
 
+-(void)viewWillLayoutSubviews {
+    CGRect puzzleFrame = puzzleView.frame;
+    puzzleFrame.size = [puzzleView sizeThatFits:_puzzleViewContainer.bounds.size];
+    puzzleView.frame = puzzleFrame;
+}
+
+-(UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return puzzleView;
+}
+
 -(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         return YES;
@@ -77,36 +85,6 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self.puzzleView layoutSubviews];
-}
-
-
-// Assuming single touch
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *t = [touches anyObject];
-    CGPoint p = [t locationInView:self.puzzleView];
-    p = [self.puzzleView locationInViewToGamePoint:p];
-    midend_process_key(myMidend, p.x, p.y, LEFT_BUTTON);
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *t = [touches anyObject];
-    CGPoint p = [t locationInView:self.puzzleView];
-    p = [self.puzzleView locationInViewToGamePoint:p];
-    midend_process_key(myMidend, p.x, p.y, LEFT_DRAG);
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *t = [touches anyObject];
-    CGPoint p = [t locationInView:self.puzzleView];
-    p = [self.puzzleView locationInViewToGamePoint:p];
-    midend_process_key(myMidend, p.x, p.y, LEFT_RELEASE);
-}
-
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *t = [touches anyObject];
-    CGPoint p = [t locationInView:self.puzzleView];
-    p = [self.puzzleView locationInViewToGamePoint:p];
-    midend_process_key(myMidend, p.x, p.y, LEFT_RELEASE);
 }
 
 - (void)defaultColour:(float*)output {
@@ -216,6 +194,7 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
 }
 
 - (IBAction)new:(id)sender {
+    [self.view setNeedsLayout];
     midend_process_key(myMidend, -1, -1, 'n');
 }
 
@@ -264,10 +243,9 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
             [vc release];
         }
         else if ([action isEqualToString:@"Help"]) {
-            if (_showingHelp) {
+            if (_helpViewController) {
                 return;
             }
-            _showingHelp = YES;
 
             HelpViewController *vc = [[HelpViewController alloc] initWithHelpTopic:
                                       [NSString stringWithCString:myGame->htmlhelp_topic encoding:NSASCIIStringEncoding]];
@@ -281,13 +259,13 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
             else {
                 // split main content view in half
                 CGRect lhs, rhs;
-                CGRectDivide(_puzzleViewContainer.bounds, &rhs, &lhs, _puzzleViewContainer.bounds.size.width / 2, CGRectMaxXEdge);
+                CGRectDivide(_puzzleViewContainer.frame, &rhs, &lhs, _puzzleViewContainer.frame.size.width / 2, CGRectMaxXEdge);
 
                 vc.view.frame = CGRectOffset(rhs, rhs.size.width, 0);
-                [_puzzleViewContainer addSubview:vc.view];
+                [self.view addSubview:vc.view];
 
                 [UIView animateWithDuration:0.3f animations:^{
-                    self.puzzleView.frame = lhs;
+                    _puzzleViewContainer.frame = lhs;
                     vc.view.frame = rhs;
                 }];
                 _helpViewController = vc;
@@ -297,11 +275,13 @@ static char *midend_deserialise_block(struct midend *me, int (^read)(void *data,
 }
 
 - (void)dismissHelpViewController:(HelpViewController *)helpViewController {
-    _showingHelp = NO;
+    assert(helpViewController);
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [UIView animateWithDuration:0.5f
                          animations:^{
-                             self.puzzleView.frame = _puzzleViewContainer.bounds;
+                             CGRect restoreFrame = _puzzleViewContainer.frame;
+                             restoreFrame.size.width = self.view.bounds.size.width;
+                             _puzzleViewContainer.frame = restoreFrame;
                              CGRect oldHelpFrame = helpViewController.view.frame;
                              helpViewController.view.frame = CGRectOffset(oldHelpFrame, oldHelpFrame.size.width, 0);
                          }

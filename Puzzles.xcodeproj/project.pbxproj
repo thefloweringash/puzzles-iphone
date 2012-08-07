@@ -14,6 +14,7 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		48026BF0157FD9430052068A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48026BEF157FD9430052068A /* QuartzCore.framework */; };
+		483E92B915D0983800E05ED1 /* CenteringScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 483E92B615D097A600E05ED1 /* CenteringScrollView.m */; };
 		48536EE110DC910600D61497 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 48536EE010DC910600D61497 /* Icon.png */; };
 		487FC8E7156F95DE00BABCF3 /* blackbox.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8C0156F95DE00BABCF3 /* blackbox.html */; };
 		487FC8E8156F95DE00BABCF3 /* bridges.html in Resources */ = {isa = PBXBuildFile; fileRef = 487FC8C1156F95DE00BABCF3 /* bridges.html */; };
@@ -131,6 +132,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Puzzles_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Puzzles_Prefix.pch; sourceTree = "<group>"; };
 		48026BEF157FD9430052068A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		483E92B515D097A600E05ED1 /* CenteringScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CenteringScrollView.h; sourceTree = "<group>"; };
+		483E92B615D097A600E05ED1 /* CenteringScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CenteringScrollView.m; sourceTree = "<group>"; };
 		48536EE010DC910600D61497 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		487FC8C0156F95DE00BABCF3 /* blackbox.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = blackbox.html; sourceTree = "<group>"; };
 		487FC8C1156F95DE00BABCF3 /* bridges.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = bridges.html; sourceTree = "<group>"; };
@@ -272,6 +275,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				483E92B515D097A600E05ED1 /* CenteringScrollView.h */,
+				483E92B615D097A600E05ED1 /* CenteringScrollView.m */,
 				1D3623240D0F684500981E51 /* PuzzlesAppDelegate.h */,
 				1D3623250D0F684500981E51 /* PuzzlesAppDelegate.m */,
 				48B6715410D7731500B244DF /* PuzzlesFrontEnd.h */,
@@ -581,6 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				483E92B915D0983800E05ED1 /* CenteringScrollView.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* PuzzlesAppDelegate.m in Sources */,
 				48B670BC10D76F9100B244DF /* blackbox.c in Sources */,

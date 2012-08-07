@@ -1,4 +1,5 @@
 #import <CoreGraphics/CoreGraphics.h>
+#import <QuartzCore/QuartzCore.h>
 #import "PuzzlesDrawingView.h"
 #import "PuzzlesFrontEnd.h"
 
@@ -15,9 +16,6 @@ static CGContextRef create_bitmap_context(int w, int h) {
     context = UIGraphicsGetCurrentContext();
     CGContextRetain(context);
     UIGraphicsEndImageContext();
-
-    CGContextTranslateCTM(context, 0, h);
-    CGContextScaleCTM(context, 1.0, -1.0);
 
     CGColorSpaceRelease(colorSpace);
     return context;
@@ -189,10 +187,13 @@ static void iphone_dr_draw_circle(void *handle, int cx, int cy, int radius,
 
 static void iphone_dr_draw_update(void *handle, int x, int y, int w, int h)
 {
+    // backingContext now has the entire view data, flush to display
+    // use of the region doesn't make sense in this implementation
+
     PuzzlesDrawingView *view = drawingView_from_handle(handle);
-    CGPoint offset = [view locationInViewToGamePoint:CGPointZero];
-    [view setNeedsDisplayInRect:CGRectOffset(CGRectMake(x, y, w, h),
-                                             -offset.x, -offset.y)];
+    CGImageRef image = CGBitmapContextCreateImage(view.backingContext);
+    view.layer.contents = (id)image;
+    CGImageRelease(image);
 }
 
 static void iphone_dr_clip(void *handle, int x, int y, int w, int h)
@@ -267,15 +268,14 @@ static void iphone_dr_blitter_save(void *handle, blitter *bl, int x, int y)
     bl->rect.origin = CGPointMake(x, y);
 
     CGImageRef image = CGBitmapContextCreateImage(view.backingContext);
-    const CGFloat uiscale = view.contentScaleFactor;
+    const CGFloat uiscale = [UIScreen mainScreen].scale;
     const CGRect blRect = bl->rect;
 
     CGRect transformed = CGRectApplyAffineTransform(blRect, CGAffineTransformMakeScale(uiscale, uiscale));
-    transformed.origin.y = CGImageGetHeight(image) - transformed.origin.y - transformed.size.height;
     bl->image = CGImageCreateWithImageInRect(image, transformed);
 
     CGRect subrect = { CGPointZero, blRect.size };
-    CGRect puzzleBounds = [view puzzleBounds];
+    CGRect puzzleBounds = [view bounds];
     if (!CGRectContainsRect(puzzleBounds, blRect)) {
         subrect = CGRectIntersection(puzzleBounds, blRect);
 
@@ -302,12 +302,19 @@ static void iphone_dr_blitter_load(void *handle, blitter *bl, int x, int y)
 {
     PuzzlesDrawingView *view = drawingView_from_handle(handle);
     CGContextRef c = view.backingContext;
+    CGContextSaveGState(c);
+    // switch into upside-down mode, as the bl->image is upside-down in this context
+    const CGFloat totalHeight = view.bounds.size.height;
+    CGContextTranslateCTM(c, 0, totalHeight);
+    CGContextScaleCTM(c, 1.0, -1.0);
     CGRect targetRect = CGRectOffset(bl->subrect, bl->rect.origin.x, bl->rect.origin.y);
     if (x != BLITTER_FROMSAVED || y != BLITTER_FROMSAVED) {
         targetRect.origin.x = x + bl->subrect.origin.x;
         targetRect.origin.y = y + bl->subrect.origin.y;
     }
+    targetRect.origin.y = totalHeight - targetRect.origin.y - targetRect.size.height;
     CGContextDrawImage(c, targetRect, bl->image);
+    CGContextRestoreGState(c);
 }
 static void iphone_dr_line_width(void *handle, float width)
 {
@@ -378,47 +385,49 @@ static void iphone_dr_draw_thick_line(void *handle, float thickness,
     return colours;
 }
 
-- (void)drawRect:(CGRect)rect {
-    CGContextRef c = UIGraphicsGetCurrentContext();
-
-    CGContextSetFillColorWithColor(c, [[colours objectAtIndex:0] CGColor]);
-    CGContextFillRect(c, rect);
-
-    CGImageRef image = CGBitmapContextCreateImage(backingContext);
-    CGContextDrawImage(c, puzzleSubframe, image);
-    CGImageRelease(image);
-}
-
-- (CGPoint)locationInViewToGamePoint:(CGPoint)p {
-    return CGPointMake(p.x - puzzleSubframe.origin.x,
-                       p.y - puzzleSubframe.origin.y);
-}
-
-- (void)layoutSubviews {
+// Unfortunately this has the side effect of resizing the underlying puzzle
+- (CGSize)sizeThatFits:(CGSize)size {
     if (backingContext) {
+        clipped = NO;
         destroy_bitmap_context(backingContext);
         backingContext = NULL;
     }
     if (myMidend) {
-        puzzleSubframe.size = self.bounds.size;
-        {
-            int maxX = puzzleSubframe.size.width;
-            int maxY = puzzleSubframe.size.height;
-            midend_size(myMidend, &maxX, &maxY, true);
-            puzzleSubframe.size = CGSizeMake(maxX, maxY);
-        }
-        puzzleSubframe.origin.x = floor((self.bounds.size.width - puzzleSubframe.size.width) / 2);
-        puzzleSubframe.origin.y = floor((self.bounds.size.height - puzzleSubframe.size.height) / 2);
+        int maxX = size.width;
+        int maxY = size.height;
+        midend_size(myMidend, &maxX, &maxY, true);
+        size = CGSizeMake(maxX, maxY);
 
-        backingContext = create_bitmap_context(puzzleSubframe.size.width, puzzleSubframe.size.height);
+        backingContext = create_bitmap_context(maxX, maxY);
         [self setNeedsDisplay];
         midend_redraw(myMidend);
     }
+    return size;
 }
 
-- (CGRect) puzzleBounds {
-    CGRect r = { CGPointZero, puzzleSubframe.size };
-    return r;
+// Assuming single touch
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *t = [touches anyObject];
+    CGPoint p = [t locationInView:self];
+    midend_process_key(myMidend, p.x, p.y, LEFT_BUTTON);
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *t = [touches anyObject];
+    CGPoint p = [t locationInView:self];
+    midend_process_key(myMidend, p.x, p.y, LEFT_DRAG);
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *t = [touches anyObject];
+    CGPoint p = [t locationInView:self];
+    midend_process_key(myMidend, p.x, p.y, LEFT_RELEASE);
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *t = [touches anyObject];
+    CGPoint p = [t locationInView:self];
+    midend_process_key(myMidend, p.x, p.y, LEFT_RELEASE);
 }
 
 - (void)dealloc {
